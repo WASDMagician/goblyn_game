@@ -543,7 +543,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11489078, guid: 27bb679c8337ca14b8571e1d8837df93, type: 2}
       propertyPath: weapon
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11416812, guid: 27bb679c8337ca14b8571e1d8837df93, type: 2}
       propertyPath: ground.m_Bits
@@ -553,6 +553,10 @@ Prefab:
       propertyPath: ground_layer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 11489078, guid: 27bb679c8337ca14b8571e1d8837df93, type: 2}
+      propertyPath: arrow_prefab
+      value: 
+      objectReference: {fileID: 147010, guid: 20e51b0e4af9a1347a837f1fe3d17c64, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27bb679c8337ca14b8571e1d8837df93, type: 2}
   m_IsPrefabParent: 0
