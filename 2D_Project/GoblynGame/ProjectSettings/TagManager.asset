@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - weapon
+  - text_box_positioner
+  - text_box
+  - text_element
   layers:
   - Default
   - TransparentFX

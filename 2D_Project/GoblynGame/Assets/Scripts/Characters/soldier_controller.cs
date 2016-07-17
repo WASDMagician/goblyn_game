@@ -9,13 +9,16 @@ public class soldier_controller : character_controller {
 	public float attack_delay;
 
 	public float attack_level; //score at which the AI will notice that the player is disguised
-	bool alive;
+	public bool alive;
+
+	public weapon_controller weapon;
 	
 
 	// Use this for initialization
 	void Start () {
 		alive = true;
 		player_object = GameObject.FindGameObjectWithTag ("Player");
+		weapon = GetComponentInChildren <weapon_controller> ();
 	}
 	
 	// Update is called once per frame
@@ -47,6 +50,10 @@ public class soldier_controller : character_controller {
 	public override void Die ()
 	{
 		alive = false;
+		print ("Dead");
+		this.transform.Rotate (new Vector3(0, 0, 90));
+		GetComponent <Collider2D>().isTrigger = true;
+		GetComponent <Rigidbody2D>().isKinematic = true;
 	}
 
 	IEnumerator Attack_Player(){

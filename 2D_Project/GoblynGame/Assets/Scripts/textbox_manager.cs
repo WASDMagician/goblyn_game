@@ -28,7 +28,11 @@ public class textbox_manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		positioning_element = GameObject.FindGameObjectWithTag ("text_box_positioner").gameObject;
+		panel_transform = positioning_element.GetComponent <RectTransform> ();
+		text_line = GameObject.FindGameObjectWithTag ("text_element").GetComponent <Text>();
 	}
+
 
 	public void Activate(){
 		panel_transform.gameObject.SetActive (true);

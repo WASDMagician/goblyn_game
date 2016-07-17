@@ -25,7 +25,7 @@ public class arrow_controller : MonoBehaviour {
 		}
 	}
 
-	public void Set_Active(bool _active, int _direction){
+	public void Set_Active(bool _active, int _direction, float arrow_speed, int damage){
 		active = _active;
 		direction = _direction;
 	}

@@ -54,6 +54,10 @@ public class character_controller : MonoBehaviour {
 		gold -= amount;
 	}
 
+	public int Get_Gold(){
+		return gold;
+	}
+
 	public void Add_Teeth(int amount){
 		teeth += amount;
 	}
@@ -62,8 +66,8 @@ public class character_controller : MonoBehaviour {
 		teeth -= amount;
 	}		
 
-	public virtual void Interact(){
-		//do nothing
+	public int Get_Teeth(){
+		return teeth;
 	}
 
 	//this is for use with the attacking animations
