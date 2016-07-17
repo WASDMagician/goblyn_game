@@ -1,5 +1,7 @@
 Use the Arrow keys to move.
 
-Space to jump.
+'Space' to jump.
 
-A to attack.
+'A' to attack.
+
+'E' to interact.

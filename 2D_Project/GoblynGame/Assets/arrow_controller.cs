@@ -31,7 +31,6 @@ public class arrow_controller : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D _col){
-		print ("Collided");
 		if (_col.gameObject.layer == LayerMask.NameToLayer ("Enemy")) {
 			_col.gameObject.GetComponent <character_controller> ().Remove_Health (damage);
 		}

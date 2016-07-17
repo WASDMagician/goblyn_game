@@ -12,6 +12,8 @@ public class soldier_controller : character_controller {
 	public bool alive;
 
 	public weapon_controller weapon;
+
+	public GameObject looting_textbox_prefab;
 	
 
 	// Use this for initialization
@@ -50,10 +52,12 @@ public class soldier_controller : character_controller {
 	public override void Die ()
 	{
 		alive = false;
-		print ("Dead");
 		this.transform.Rotate (new Vector3(0, 0, 90));
 		GetComponent <Collider2D>().isTrigger = true;
 		GetComponent <Rigidbody2D>().isKinematic = true;
+
+		GameObject loot_text = Instantiate (looting_textbox_prefab, this.transform.position, Quaternion.identity) as GameObject;
+		loot_text.transform.parent = this.transform;
 	}
 
 	IEnumerator Attack_Player(){
