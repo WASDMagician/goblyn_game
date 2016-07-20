@@ -31,6 +31,10 @@ public class character_movement : MonoBehaviour {
 		Flip_And_Position_Sprite (_direction);
 	}
 
+	public int Get_direction(){
+		return look_direction;
+	}
+
 	void Flip_And_Position_Sprite(int _direction){
 		if (_direction != 0 && _direction != look_direction) {
 

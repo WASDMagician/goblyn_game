@@ -531,7 +531,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 428228, guid: 27bb679c8337ca14b8571e1d8837df93, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11453018, guid: 27bb679c8337ca14b8571e1d8837df93, type: 2}
       propertyPath: weapon
@@ -1038,24 +1038,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 473218, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11472850, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
-      propertyPath: attack_delay
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472850, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
-      propertyPath: gold
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472850, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
-      propertyPath: teeth
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472850, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
-      propertyPath: looting_textbox_prefab
+      propertyPath: weapon_drop_prefab
       value: 
-      objectReference: {fileID: 123620, guid: 6335c51b70ed6dc48b235ba27364c560, type: 2}
+      objectReference: {fileID: 145378, guid: 0986731112def5546b29ca772461b06a, type: 2}
+    - target: {fileID: 11499898, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
+      propertyPath: weapon
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499898, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
+      propertyPath: arrow_prefab
+      value: 
+      objectReference: {fileID: 147010, guid: 20e51b0e4af9a1347a837f1fe3d17c64, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc22a0d6e4488f748908efdcec10af74, type: 2}
   m_IsPrefabParent: 0

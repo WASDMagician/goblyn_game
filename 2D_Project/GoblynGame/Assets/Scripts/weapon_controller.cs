@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class weapon_controller : MonoBehaviour {
 
 	bool is_attacking;
-
 	public enum weapons {hand, club, spiked_club, dagger, short_sword, sword, long_sword, bow, old_bow};
 	public enum attack_methods {melee, ranged};
 
@@ -46,7 +45,7 @@ public class weapon_controller : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		attack_types = new attack_methods[] {
 			attack_methods.melee, attack_methods.melee, attack_methods.melee, attack_methods.melee, attack_methods.melee, 
 			attack_methods.melee, attack_methods.melee, attack_methods.ranged, attack_methods.ranged
@@ -55,14 +54,14 @@ public class weapon_controller : MonoBehaviour {
 		damage_amounts = new int[] { 9, 10, 11, 12, 13, 14, 15, 16 };
 
 		//hand, club, spiked_club, dagger, short_sword, sword, long_sword, bow, old_bow
-		attack_ignore_animation_start = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //do no damage for this long
-		attack_animation_damage_time = new float[] { 0, 0, 0, 0, 0, 0, 0, 0 }; //damage at this point
-		attack_ignore_animation_end = new float[] { 0, 0, 0, 0, 0, 0, 0, 0}; //stop doing damage at this point
+		attack_ignore_animation_start = new float[] { 1, 1, 1, 1, 1, 1, 1, 0, 0 }; //do no damage for this long
+		attack_animation_damage_time = new float[] { 1, 1, 1, 1, 1, 1, 1, 0, 0 }; //damage at this point
+		attack_ignore_animation_end = new float[] { 1, 1, 1, 1, 1, 1, 1, 0, 0}; //stop doing damage at this point
 		
 
 		collider = GetComponent <CircleCollider2D> ();
 
-		Set_Weapon ();
+		Set_Weapon (weapon);
 
 		enemies = new List<character_controller> ();
 	}
@@ -71,17 +70,24 @@ public class weapon_controller : MonoBehaviour {
 	void Update () {
 	}
 
-	public void Set_Weapon(){
+	public void Set_Weapon(weapons _weapon){
+		weapon = _weapon;
 		attack_method = attack_types [(int)weapon];
 		range = attack_ranges [(int)weapon];
 		damage = damage_amounts [(int)weapon];
-		collider.radius = range;
+		if (GetComponent <CircleCollider2D> () != null) {
+			collider.radius = range;
+		}
 
 		attack_ignore_start = attack_ignore_animation_start [(int)weapon];
 		attack_do_damage = attack_animation_damage_time [(int)weapon];
 		attack_ignore_end = attack_ignore_animation_end [(int)weapon];
 
 		total_attack_time = attack_ignore_start + attack_do_damage + attack_ignore_end;
+	}
+
+	public weapons Get_Weapon(){
+		return weapon;
 	}
 
 	//fix this shit

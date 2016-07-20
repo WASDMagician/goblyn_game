@@ -11,9 +11,9 @@ public class soldier_controller : character_controller {
 	public float attack_level; //score at which the AI will notice that the player is disguised
 	public bool alive;
 
-	public weapon_controller weapon;
-
 	public GameObject looting_textbox_prefab;
+
+	public GameObject weapon_drop_prefab;
 	
 
 	// Use this for initialization
@@ -58,6 +58,11 @@ public class soldier_controller : character_controller {
 
 		GameObject loot_text = Instantiate (looting_textbox_prefab, this.transform.position, Quaternion.identity) as GameObject;
 		loot_text.transform.parent = this.transform;
+		GameObject weapon_drop = Instantiate (weapon_drop_prefab, this.transform.position, Quaternion.identity) as GameObject;
+		weapon_controller weapon_drop_weapon = weapon_drop.GetComponent <weapon_controller> ();
+
+		weapon_drop_weapon.Set_Weapon (weapon.Get_Weapon ());
+		weapon_drop.GetComponent <Rigidbody2D>().AddForce (new Vector2(-(movement.Get_direction () * 5), 5), ForceMode2D.Impulse);
 	}
 
 	IEnumerator Attack_Player(){

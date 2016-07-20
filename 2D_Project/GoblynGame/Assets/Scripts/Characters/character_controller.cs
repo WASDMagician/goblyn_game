@@ -74,7 +74,6 @@ public class character_controller : MonoBehaviour {
 	//once enemy is hit during attack make them invulnerable
 	//for the remainder of the attack time
 	public virtual IEnumerator Make_Invulnerable_For_Seconds(float time){
-		//do nothing
-		yield return new WaitForSeconds (0);
+		yield return new WaitForSeconds (0); //cannot be empty, this doesn't actually do anything
 	}
 }

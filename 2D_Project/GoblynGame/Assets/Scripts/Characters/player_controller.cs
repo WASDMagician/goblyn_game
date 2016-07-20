@@ -59,6 +59,10 @@ public class player_controller : character_controller {
 		}
 	}
 
+	public void Set_Weapon(weapon_controller.weapons _weapon){
+		weapon.Set_Weapon (_weapon);
+	}
+
 	void OnTriggerEnter2D(Collider2D _col){
 		if(_col.gameObject.layer == LayerMask.NameToLayer ("Enemy")){
 			soldier_controller soldier = _col.GetComponent <soldier_controller>();
