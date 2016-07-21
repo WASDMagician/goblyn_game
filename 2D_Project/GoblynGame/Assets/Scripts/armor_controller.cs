@@ -16,11 +16,13 @@ public class armor_controller : MonoBehaviour {
 	void Start () {
 		armor_damage_reduction = new int[] { 0, 1, 2, 3};
 		Calculate_Damage_Resistance ();
+		Calculate_Hiddenness ();
 	}
 
 	public void Set_Armor(armor_type _armor){
 		current_armor = _armor;
 		Calculate_Damage_Resistance ();
+		Calculate_Hiddenness ();
 	}
 
 	public armor_type Get_Armor(){
