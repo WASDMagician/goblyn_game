@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class soldier_controller : character_controller {
+public class enemy_controller : character_controller {
 
 	GameObject player_object;
 	public float player_chase_range;
@@ -21,6 +21,7 @@ public class soldier_controller : character_controller {
 		alive = true;
 		player_object = GameObject.FindGameObjectWithTag ("Player");
 		weapon = GetComponentInChildren <weapon_controller> ();
+		armor = GetComponentInChildren <armor_controller> ();
 	}
 	
 	// Update is called once per frame
@@ -63,6 +64,10 @@ public class soldier_controller : character_controller {
 
 		weapon_drop_weapon.Set_Weapon (weapon.Get_Weapon ());
 		weapon_drop.GetComponent <Rigidbody2D>().AddForce (new Vector2(-(movement.Get_direction () * 5), 5), ForceMode2D.Impulse);
+	}
+
+	public armor_controller.armor_type Get_Armor(){
+		return armor.Get_Armor ();
 	}
 
 	IEnumerator Attack_Player(){

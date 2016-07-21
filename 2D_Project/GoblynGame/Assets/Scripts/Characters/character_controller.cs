@@ -7,6 +7,7 @@ public class character_controller : MonoBehaviour {
 	public Animator animator;
 	public int health;
 	public weapon_controller weapon;
+	public armor_controller armor;
 
 	public int gold;
 	public int teeth;
