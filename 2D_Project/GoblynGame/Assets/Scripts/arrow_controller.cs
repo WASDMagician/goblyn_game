@@ -33,6 +33,8 @@ public class arrow_controller : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D _col){
 		if (_col.gameObject.layer == LayerMask.NameToLayer ("Enemy")) {
 			_col.gameObject.GetComponent <character_controller> ().Remove_Health (damage);
+			//change to enemy_controller instead of character_conttroller?
+			_col.gameObject.GetComponent <enemy_controller>().attack_level = 8; //make enemy attack you
 		}
 		Destroy (this.gameObject);
 	}

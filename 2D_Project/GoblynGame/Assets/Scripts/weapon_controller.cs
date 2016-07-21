@@ -110,6 +110,9 @@ public class weapon_controller : MonoBehaviour {
 			}
 			while (Time.fixedTime < attack_start_time + attack_ignore_start + attack_do_damage) {
 				for (int i = 0; i < enemies.Count; i++) {
+					//maybe change the enemies array container to use enemy_controller instead of character_controller
+					//this also happens in arrow_controller
+					enemies [i].GetComponent <enemy_controller> ().attack_level = 8; //makes enemy attack you if you attack them
 					enemies [i].Remove_Health (damage);
 					enemies [i].is_invulnerable = true;
 				}

@@ -27,7 +27,7 @@ public class enemy_controller : character_controller {
 	// Update is called once per frame
 	void Update () {
 		if (alive == true) {
-			if (attack_level >= player_object.GetComponent <armor_controller> ().hiddenness) { //drop this into the if statement below
+			if (attack_level > player_object.GetComponent <armor_controller> ().hiddenness) {
 				float distance = Vector3.Distance (this.transform.position, player_object.transform.position);
 				if (distance < player_chase_range && distance > character_attack_range) {
 					Chase_Player ();
@@ -55,6 +55,7 @@ public class enemy_controller : character_controller {
 		alive = false;
 		this.transform.Rotate (new Vector3(0, 0, 90));
 		GetComponent <Collider2D>().isTrigger = true;
+		GetComponent <Rigidbody2D>().velocity = new Vector2(0, 0);
 		GetComponent <Rigidbody2D>().isKinematic = true;
 
 		GameObject loot_text = Instantiate (looting_textbox_prefab, this.transform.position, Quaternion.identity) as GameObject;
