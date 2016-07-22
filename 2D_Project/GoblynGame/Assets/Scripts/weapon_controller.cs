@@ -9,6 +9,8 @@ public class weapon_controller : MonoBehaviour {
 	public enum weapons {hand, club, spiked_club, dagger, short_sword, sword, long_sword, bow, old_bow};
 	public enum attack_methods {melee, ranged};
 
+	public GameObject arrow_prefab;
+
 	attack_methods[] attack_types;
 	float[] attack_ranges;
 	int[] damage_amounts;
@@ -42,6 +44,7 @@ public class weapon_controller : MonoBehaviour {
 	float enemies_in_range;
 	public List<character_controller> enemies;
 
+
 	// Use this for initialization
 	void Start () {
 		attack_types = new attack_methods[] {
@@ -51,9 +54,10 @@ public class weapon_controller : MonoBehaviour {
 		attack_ranges = new float[] {1, 2, 3, 4, 5, 6, 7, 8 };
 		damage_amounts = new int[] { 9, 10, 11, 12, 13, 14, 15, 16 };
 
-		attack_ignore_animation_start = new float[] { 1, 1, 1, 1, 1, 1, 1, 1 }; //do no damage for this long
-		attack_animation_damage_time = new float[] { 1, 1, 1, 1, 1, 1, 1, 1 }; //damage at this point
-		attack_ignore_animation_end = new float[] { 1, 1, 1, 1, 1, 1, 1, 1}; //stop doing damage at this point
+		//hand, club, spiked_club, dagger, short_sword, sword, long_sword, bow, old_bow
+		attack_ignore_animation_start = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //do no damage for this long
+		attack_animation_damage_time = new float[] { 0, 0, 0, 0, 0, 0, 0, 0 }; //damage at this point
+		attack_ignore_animation_end = new float[] { 0, 0, 0, 0, 0, 0, 0, 0}; //stop doing damage at this point
 		
 
 		collider = GetComponent <CircleCollider2D> ();
@@ -61,7 +65,6 @@ public class weapon_controller : MonoBehaviour {
 		Set_Weapon ();
 
 		enemies = new List<character_controller> ();
-
 	}
 	
 	// Update is called once per frame
@@ -94,16 +97,25 @@ public class weapon_controller : MonoBehaviour {
 
 	//eeew oh god oh god oh god whyyyy
 	public IEnumerator Attack(){
-		draw_color = Color.red;
-		for(int i = 0; i < enemies.Count; i++){
-			enemies [i].is_invulnerable = false;
-		}
-		while(Time.fixedTime < attack_start_time + attack_ignore_start + attack_do_damage){
+		if (attack_method == attack_methods.melee) {
+			draw_color = Color.red;
 			for (int i = 0; i < enemies.Count; i++) {
-				enemies [i].Remove_Health (damage);
-				enemies [i].is_invulnerable = true;
+				enemies [i].is_invulnerable = false;
 			}
-			yield return new WaitForSeconds (0);
+			while (Time.fixedTime < attack_start_time + attack_ignore_start + attack_do_damage) {
+				for (int i = 0; i < enemies.Count; i++) {
+					enemies [i].Remove_Health (damage);
+					enemies [i].is_invulnerable = true;
+				}
+				yield return new WaitForSeconds (0);
+			}
+		}
+		else{
+			GameObject arrow_object = Instantiate (arrow_prefab, this.transform.position, Quaternion.identity) as GameObject;
+			Physics2D.IgnoreCollision (arrow_object.GetComponent <BoxCollider2D>(), this.transform.parent.GetComponent <BoxCollider2D>());
+			arrow_controller arrow = arrow_object.GetComponent <arrow_controller> ();
+			arrow.Set_Active (true, (int)this.transform.parent.transform.localScale.x, damage, 13);
+
 		}
 		StartCoroutine (End_Attack ());
 	}
@@ -112,7 +124,6 @@ public class weapon_controller : MonoBehaviour {
 	public IEnumerator End_Attack(){
 		draw_color = Color.blue;
 		yield return new WaitForSeconds (attack_ignore_end);
-		print ("Done now");
 		is_attacking = false;
 	}
 
