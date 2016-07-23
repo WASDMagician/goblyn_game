@@ -17,7 +17,7 @@ GameObject:
   - 114: {fileID: 11408300}
   m_Layer: 9
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.253, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.84, y: -0.88, z: 0}
+  m_LocalPosition: {x: 3.84, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -108,9 +108,9 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: d3cb227133807114fa8946a8abc141f7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.016605616, y: 1.2618827}
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.9013834, y: 2.56584}
 --- !u!95 &9536182
 Animator:
   serializedVersion: 3
@@ -160,6 +160,7 @@ MonoBehaviour:
   ground_layer:
     serializedVersion: 2
     m_Bits: 0
+  animator: {fileID: 0}
 --- !u!114 &11472850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +234,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dfb0d35357cdb27498f88dcd6889695e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9879ea1c7515aa64387ca7ef225c481b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

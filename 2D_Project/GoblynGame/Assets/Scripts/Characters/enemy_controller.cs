@@ -26,6 +26,10 @@ public class enemy_controller : character_controller {
 	
 	// Update is called once per frame
 	void Update () {
+		if(alive == false){
+			GetComponent <Rigidbody2D>().velocity = new Vector2(0, 0);
+		}
+
 		if (alive == true) {
 			if (attack_level > player_object.GetComponent <armor_controller> ().hiddenness) {
 				float distance = Vector3.Distance (this.transform.position, player_object.transform.position);

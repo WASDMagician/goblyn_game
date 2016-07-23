@@ -17,9 +17,12 @@ public class character_movement : MonoBehaviour {
 
 	public LayerMask ground_layer;
 
+	public Animator animator;
+
 	void Start(){
 		rigidbody = GetComponent <Rigidbody2D> ();
 		collider = GetComponent <BoxCollider2D> ();
+		animator = GetComponent <Animator> ();
 	}
 
 	void Update(){
@@ -61,6 +64,7 @@ public class character_movement : MonoBehaviour {
 
 	void Move(){
 		Calculate_X_Speed ();
+		Set_Animation ();
 		Vector2 current_velocity = rigidbody.velocity;
 		current_velocity.x = current_x_speed;
 		rigidbody.velocity = current_velocity;
@@ -76,6 +80,16 @@ public class character_movement : MonoBehaviour {
 		}
 		else{
 			current_x_speed = Mathf.Lerp (current_x_speed, 0, deceleration);
+		}
+	}
+
+	void Set_Animation(){
+		Vector2 current_velocity = rigidbody.velocity;
+		if(Mathf.Abs(current_velocity.x) >= max_speed - 1){
+			animator.SetBool ("walking", true);
+		}
+		else{
+			animator.SetBool ("walking", false);
 		}
 	}
 

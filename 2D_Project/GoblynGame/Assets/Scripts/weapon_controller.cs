@@ -43,6 +43,8 @@ public class weapon_controller : MonoBehaviour {
 	float enemies_in_range;
 	public List<character_controller> enemies;
 
+	public Animator parent_animator; //currently for parent might change
+
 
 	// Use this for initialization
 	void Awake () {
@@ -51,12 +53,12 @@ public class weapon_controller : MonoBehaviour {
 			attack_methods.melee, attack_methods.melee, attack_methods.ranged, attack_methods.ranged
 		};
 		attack_ranges = new float[] {1, 2, 3, 4, 5, 6, 7, 8 };
-		damage_amounts = new int[] { 9, 10, 11, 12, 13, 14, 15, 16 };
+		damage_amounts = new int[] { 9, 10, 11, 30, 13, 14, 40, 40 };
 
 		//hand, club, spiked_club, dagger, short_sword, sword, long_sword, bow, old_bow
-		attack_ignore_animation_start = new float[] { 1, 1, 1, 1, 1, 1, 1, 0, 0 }; //do no damage for this long
-		attack_animation_damage_time = new float[] { 1, 1, 1, 1, 1, 1, 1, 0, 0 }; //damage at this point
-		attack_ignore_animation_end = new float[] { 1, 1, 1, 1, 1, 1, 1, 0, 0}; //stop doing damage at this point
+		attack_ignore_animation_start = new float[] { 1, 1, 1, 0.5f, 1, 1, 1, 0, 0 }; //do no damage for this long
+		attack_animation_damage_time = new float[] { 1, 1, 1, 1f, 1, 1, 1, 0, 0 }; //damage at this point
+		attack_ignore_animation_end = new float[] { 1, 1, 1, 0, 1, 1, 1, 0, 0}; //stop doing damage at this point
 		
 
 		collider = GetComponent <CircleCollider2D> ();
@@ -64,6 +66,8 @@ public class weapon_controller : MonoBehaviour {
 		Set_Weapon (weapon);
 
 		enemies = new List<character_controller> ();
+
+		parent_animator = GetComponentInParent <Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -90,9 +94,9 @@ public class weapon_controller : MonoBehaviour {
 		return weapon;
 	}
 
-	//fix this shit
 	public IEnumerator Start_Attack(){
 		if (!is_attacking) {
+			Set_Character_Attack_Animation (true);
 			draw_color = Color.green;
 			attack_start_time = Time.fixedTime;
 			is_attacking = true;
@@ -123,17 +127,25 @@ public class weapon_controller : MonoBehaviour {
 			GameObject arrow_object = Instantiate (arrow_prefab, this.transform.position, Quaternion.identity) as GameObject;
 			Physics2D.IgnoreCollision (arrow_object.GetComponent <BoxCollider2D>(), this.transform.parent.GetComponent <BoxCollider2D>());
 			arrow_controller arrow = arrow_object.GetComponent <arrow_controller> ();
-			arrow.Set_Active (true, (int)this.transform.parent.transform.localScale.x, damage, 13);
+			arrow.Set_Active (true, (int)this.transform.parent.transform.localScale.x, 20, damage);
 
 		}
 		StartCoroutine (End_Attack ());
 	}
-
-	//meh
+		
 	public IEnumerator End_Attack(){
 		draw_color = Color.blue;
 		yield return new WaitForSeconds (attack_ignore_end);
+		Set_Character_Attack_Animation (false);
 		is_attacking = false;
+	}
+
+	void Set_Character_Attack_Animation(bool _on_off){
+		switch(weapon){
+		case weapons.dagger:
+			parent_animator.SetBool ("dagger_stab", _on_off);
+			break;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D _col){
