@@ -9,7 +9,7 @@ public class cam_track_player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player_object = GameObject.FindGameObjectWithTag ("Player");
+		//player_object = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame

@@ -7,6 +7,7 @@ TagManager:
   - text_box_positioner
   - text_box
   - text_element
+  - Enemy
   layers:
   - Default
   - TransparentFX

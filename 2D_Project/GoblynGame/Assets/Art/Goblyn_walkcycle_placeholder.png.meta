@@ -1,0 +1,197 @@
+fileFormatVersion: 2
+guid: ba1c6dac6ade8ce47a572181693e523d
+timeCreated: 1469270235
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Goblyn_walkcycle_placeholder_0
+    21300002: Goblyn_walkcycle_placeholder_1
+    21300004: Goblyn_walkcycle_placeholder_2
+    21300006: Goblyn_walkcycle_placeholder_3
+    21300008: Goblyn_walkcycle_placeholder_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Goblyn_walkcycle_placeholder_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 225
+        height: 279
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 112.5, y: 154}
+        - {x: 112.5, y: 208}
+        - {x: 110.5, y: 232}
+        - {x: 79.5, y: 256}
+        - {x: 27.5, y: 274}
+        - {x: 9.5, y: 279}
+        - {x: -62.5, y: 279}
+        - {x: -73.5, y: 238}
+        - {x: -112.5, y: 189}
+        - {x: -112.5, y: 102}
+        - {x: -100.5, y: 78}
+        - {x: -70.5, y: 0}
+        - {x: 14.5, y: 0}
+        - {x: 34.5, y: 54}
+        - {x: 33.5, y: 108}
+        - {x: 95.5, y: 119}
+    - name: Goblyn_walkcycle_placeholder_1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 0
+        width: 225
+        height: 279
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 107.5, y: 126}
+        - {x: 112.5, y: 142}
+        - {x: 112.5, y: 206}
+        - {x: 93.5, y: 252}
+        - {x: 64.5, y: 247}
+        - {x: -9.5, y: 279}
+        - {x: -55.5, y: 279}
+        - {x: -90.5, y: 201}
+        - {x: -112.5, y: 173}
+        - {x: -112.5, y: 77}
+        - {x: -77.5, y: 25}
+        - {x: -83.5, y: 0}
+        - {x: 10.5, y: 0}
+        - {x: 31.5, y: 46}
+        - {x: 35.5, y: 104}
+        - {x: 87.5, y: 108}
+    - name: Goblyn_walkcycle_placeholder_2
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 0
+        width: 225
+        height: 279
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 112.5, y: 145}
+        - {x: 112.5, y: 210}
+        - {x: 105.5, y: 242}
+        - {x: 86.5, y: 256}
+        - {x: 30.5, y: 279}
+        - {x: -50.5, y: 279}
+        - {x: -66.5, y: 274}
+        - {x: -70.5, y: 219}
+        - {x: -112.5, y: 181}
+        - {x: -112.5, y: 112}
+        - {x: -110.5, y: 91}
+        - {x: -87.5, y: 78}
+        - {x: -65.5, y: 0}
+        - {x: 3.5, y: 0}
+        - {x: 36.5, y: 47}
+        - {x: 37.5, y: 82}
+        - {x: 91.5, y: 118}
+    - name: Goblyn_walkcycle_placeholder_3
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 0
+        width: 225
+        height: 279
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 95.5, y: 125}
+        - {x: 112.5, y: 162}
+        - {x: 112.5, y: 204}
+        - {x: 109.5, y: 234}
+        - {x: 83.5, y: 263}
+        - {x: 10.5, y: 279}
+        - {x: -55.5, y: 279}
+        - {x: -74.5, y: 236}
+        - {x: -112.5, y: 187}
+        - {x: -112.5, y: 89}
+        - {x: -93.5, y: 58}
+        - {x: -97.5, y: 0}
+        - {x: 28.5, y: 0}
+        - {x: 33.5, y: 4}
+        - {x: 37.5, y: 82}
+        - {x: 53.5, y: 115}
+    - name: Goblyn_walkcycle_placeholder_4
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 0
+        width: 227
+        height: 279
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 70.5, y: 259}
+        - {x: 58.5, y: 235}
+        - {x: 50.5, y: 216}
+        - {x: 51.5, y: 236}
+        - {x: 0.5, y: 279}
+        - {x: -55.5, y: 279}
+        - {x: -80.5, y: 212}
+        - {x: -113.5, y: 175}
+        - {x: -113.5, y: 89}
+        - {x: -83.5, y: 64}
+        - {x: -70.5, y: 0}
+        - {x: 42.5, y: 0}
+        - {x: 47.5, y: 88}
+        - {x: 113.5, y: 118}
+        - {x: 113.5, y: 234}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
