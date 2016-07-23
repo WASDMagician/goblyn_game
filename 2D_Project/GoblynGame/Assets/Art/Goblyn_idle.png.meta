@@ -1,0 +1,211 @@
+fileFormatVersion: 2
+guid: 9879ea1c7515aa64387ca7ef225c481b
+timeCreated: 1469203381
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Goblyn_idle_0
+    21300002: Goblyn_idle_1
+    21300004: Goblyn_idle_2
+    21300006: Goblyn_idle_3
+    21300008: Goblyn_idle_4
+    21300010: Goblyn_idle_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Goblyn_idle_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 9
+        width: 199
+        height: 254
+      alignment: 9
+      pivot: {x: 0.40726948, y: 0.0012227269}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117.95338, y: 115.68943}
+        - {x: 117.95338, y: 234.68942}
+        - {x: 90.95338, y: 253.68942}
+        - {x: -36.046623, y: 253.68942}
+        - {x: -81.04662, y: 175.68942}
+        - {x: -81.04662, y: 76.68943}
+        - {x: -57.046623, y: 61.68943}
+        - {x: -66.04662, y: 0.68943024}
+        - {x: -64.04662, y: -0.31056976}
+        - {x: 54.953377, y: -0.31056976}
+        - {x: 59.953377, y: 12.68943}
+        - {x: 56.953377, y: 98.68943}
+        - {x: 101.95338, y: 105.68943}
+    - name: Goblyn_idle_1
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 9
+        width: 199
+        height: 261
+      alignment: 9
+      pivot: {x: 0.40726936, y: 0.002839484}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108.9534, y: 248.2589}
+        - {x: 81.9534, y: 247.2589}
+        - {x: 49.9534, y: 260.2589}
+        - {x: -34.0466, y: 260.2589}
+        - {x: -46.0466, y: 230.2589}
+        - {x: -81.0466, y: 184.2589}
+        - {x: -81.0466, y: 84.258896}
+        - {x: -58.0466, y: 66.258896}
+        - {x: -66.0466, y: 10.258896}
+        - {x: -64.0466, y: -0.7411041}
+        - {x: 55.9534, y: -0.7411041}
+        - {x: 98.9534, y: 102.258896}
+        - {x: 117.9534, y: 118.258896}
+        - {x: 117.9534, y: 238.2589}
+    - name: Goblyn_idle_2
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 8
+        width: 200
+        height: 267
+      alignment: 9
+      pivot: {x: 0.41305634, y: 0.0042420076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117.38873, y: 246.86739}
+        - {x: 104.38873, y: 261.86737}
+        - {x: 63.388733, y: 264.86737}
+        - {x: 47.388733, y: 265.86737}
+        - {x: -39.611267, y: 265.86737}
+        - {x: -46.611267, y: 235.86739}
+        - {x: -82.61127, y: 189.86739}
+        - {x: -82.61127, y: 89.867386}
+        - {x: -55.611267, y: 74.867386}
+        - {x: -64.61127, y: 11.867386}
+        - {x: -63.611267, y: -1.1326141}
+        - {x: 56.388733, y: -1.1326141}
+        - {x: 51.388733, y: 112.867386}
+        - {x: 106.38873, y: 116.867386}
+        - {x: 117.38873, y: 126.867386}
+    - name: Goblyn_idle_3
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 8
+        width: 198
+        height: 267
+      alignment: 9
+      pivot: {x: 0.41576254, y: 0.00025467746}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 115.679016, y: 266.932}
+        - {x: -41.320984, y: 266.932}
+        - {x: -49.320984, y: 255.932}
+        - {x: -82.320984, y: 206.932}
+        - {x: -82.320984, y: 98.93201}
+        - {x: -55.320984, y: 79.93201}
+        - {x: -68.320984, y: 1.9320068}
+        - {x: -65.320984, y: -0.067993164}
+        - {x: 54.679016, y: -0.067993164}
+        - {x: 53.679016, y: 103.93201}
+        - {x: 72.679016, y: 121.93201}
+        - {x: 115.679016, y: 136.932}
+    - name: Goblyn_idle_4
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 8
+        width: 199
+        height: 268
+      alignment: 9
+      pivot: {x: 0.41796938, y: 0.0034435221}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 115.8241, y: 246.07713}
+        - {x: 102.8241, y: 259.07715}
+        - {x: 60.824097, y: 248.07713}
+        - {x: 34.824097, y: 267.07715}
+        - {x: -44.175903, y: 267.07715}
+        - {x: -52.175903, y: 217.07713}
+        - {x: -83.1759, y: 191.07713}
+        - {x: -83.1759, y: 90.07713}
+        - {x: -62.175903, y: 72.07713}
+        - {x: -68.1759, y: -0.9228668}
+        - {x: 54.824097, y: -0.9228668}
+        - {x: 49.824097, y: 115.07713}
+        - {x: 104.8241, y: 118.07713}
+        - {x: 115.8241, y: 130.07713}
+    - name: Goblyn_idle_5
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 8
+        width: 198
+        height: 261
+      alignment: 9
+      pivot: {x: 0.4085934, y: 0.0064419275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117.09851, y: 240.31866}
+        - {x: 111.09851, y: 252.31866}
+        - {x: 71.09851, y: 259.31866}
+        - {x: -32.90149, y: 259.31866}
+        - {x: -47.90149, y: 233.31866}
+        - {x: -47.90149, y: 204.31866}
+        - {x: -80.90149, y: 178.31866}
+        - {x: -80.90149, y: 75.318665}
+        - {x: -60.90149, y: 46.318665}
+        - {x: -64.90149, y: -1.6813354}
+        - {x: 55.09851, y: -1.6813354}
+        - {x: 56.09851, y: 8.318665}
+        - {x: 55.09851, y: 80.318665}
+        - {x: 117.09851, y: 120.318665}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

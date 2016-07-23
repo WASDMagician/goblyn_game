@@ -14,9 +14,10 @@ GameObject:
   - 50: {fileID: 5097528}
   - 114: {fileID: 11453018}
   - 114: {fileID: 11416812}
+  - 114: {fileID: 11470088}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.65, y: 1.56, z: 0}
+  m_LocalPosition: {x: -7.07, y: -3.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -59,8 +60,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.22, z: 0}
+  m_LocalScale: {x: 1.62, y: 1.62, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 428228}
@@ -107,9 +108,9 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: d3cb227133807114fa8946a8abc141f7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03201151, y: 1.257366}
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.9473499, y: 2.5264783}
 --- !u!95 &9565092
 Animator:
   serializedVersion: 3
@@ -142,6 +143,10 @@ MonoBehaviour:
   acceleration: 0.25
   deceleration: 0.25
   jump_speed: 18
+  ground_layer:
+    serializedVersion: 2
+    m_Bits: 256
+  animator: {fileID: 0}
 --- !u!114 &11453018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,7 +161,27 @@ MonoBehaviour:
   movement: {fileID: 11416812}
   animator: {fileID: 9565092}
   health: 100
-  weapon: {fileID: 0}
+  weapon: {fileID: 11489078}
+  armor: {fileID: 0}
+  gold: 0
+  teeth: 0
+  is_invulnerable: 0
+  dead_soldiers: []
+  player_hud: {fileID: 0}
+--- !u!114 &11470088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b7c426abc93bd489bbf50a3908802e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current_armor: 0
+  damage_resistance: 0
+  hiddenness: 0
 --- !u!114 &11489078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,11 +193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca3c013bcc212b41b20597f6ea20752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: 0
+  arrow_prefab: {fileID: 147010, guid: 20e51b0e4af9a1347a837f1fe3d17c64, type: 2}
+  weapon: 7
   attack_method: 0
   range: 0
   damage: 0
-  attack_length: 0
+  attack_ignore_start: 0
+  attack_do_damage: 0
+  attack_ignore_end: 0
   enemies: []
 --- !u!212 &21211950
 SpriteRenderer:
@@ -200,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dfb0d35357cdb27498f88dcd6889695e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9879ea1c7515aa64387ca7ef225c481b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

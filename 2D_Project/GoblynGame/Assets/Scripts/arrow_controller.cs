@@ -25,9 +25,11 @@ public class arrow_controller : MonoBehaviour {
 		}
 	}
 
-	public void Set_Active(bool _active, int _direction, float arrow_speed, int damage){
+	public void Set_Active(bool _active, int _direction, float _arrow_speed, int _damage){
 		active = _active;
 		direction = _direction;
+		arrow_speed = _arrow_speed;
+		damage = _damage;
 	}
 
 	void OnCollisionEnter2D(Collision2D _col){
