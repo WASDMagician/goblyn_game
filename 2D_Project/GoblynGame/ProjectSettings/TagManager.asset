@@ -7,6 +7,15 @@ TagManager:
   - text_box_positioner
   - text_box
   - text_element
+  - enemy
+  - item_one
+  - item_two
+  - item_three
+  - buy_button
+  - cancel_button
+  - shop_item
+  - money_error
+  - weapon
   - Enemy
   layers:
   - Default

@@ -33,11 +33,11 @@ public class character_controller : MonoBehaviour {
 		}
 	}
 
-	public int Get_Health(){
+	public virtual int Get_Health(){
 		return health;
 	}
 
-	public void Health_Check(){
+	public virtual void Health_Check(){
 		if(health <= 0){
 			Die ();
 		}
@@ -47,27 +47,27 @@ public class character_controller : MonoBehaviour {
 		
 	}
 
-	public void Add_Gold(int amount){
+	public virtual void Add_Gold(int amount){
 		gold += amount;
 	}
 
-	public void Remove_Gold(int amount){
+	public virtual void Remove_Gold(int amount){
 		gold -= amount;
 	}
 
-	public int Get_Gold(){
+	public virtual int Get_Gold(){
 		return gold;
 	}
 
-	public void Add_Teeth(int amount){
+	public virtual void Add_Teeth(int amount){
 		teeth += amount;
 	}
 
-	public void Remove_Teeth(int amount){
+	public virtual void Remove_Teeth(int amount){
 		teeth -= amount;
 	}		
 
-	public int Get_Teeth(){
+	public virtual int Get_Teeth(){
 		return teeth;
 	}
 

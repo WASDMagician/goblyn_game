@@ -67,8 +67,10 @@ public class enemy_controller : character_controller {
 		GameObject weapon_drop = Instantiate (weapon_drop_prefab, this.transform.position, Quaternion.identity) as GameObject;
 		weapon_controller weapon_drop_weapon = weapon_drop.GetComponent <weapon_controller> ();
 
-		weapon_drop_weapon.Set_Weapon (weapon.Get_Weapon ());
-		weapon_drop.GetComponent <Rigidbody2D>().AddForce (new Vector2(-(movement.Get_direction () * 5), 5), ForceMode2D.Impulse);
+		if (weapon_drop_weapon.Get_Weapon () != weapon_controller.weapons.none) {
+			weapon_drop_weapon.Set_Weapon (weapon.Get_Weapon ());
+			weapon_drop.GetComponent <Rigidbody2D> ().AddForce (new Vector2 (-(movement.Get_direction () * 5), 5), ForceMode2D.Impulse);
+		}
 	}
 
 	public armor_controller.armor_type Get_Armor(){
