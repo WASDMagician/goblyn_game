@@ -5,14 +5,16 @@ using System.Collections.Generic;
 public class weapon_controller : MonoBehaviour {
 
 	bool is_attacking;
-	public enum weapons {hand, club, spiked_club, dagger, short_sword, sword, long_sword, bow, old_bow};
+	public enum weapons {none, bone_dagger, sword, bow};
 	public enum attack_methods {melee, ranged};
 
 	public GameObject arrow_prefab;
 
 	attack_methods[] attack_types;
 	float[] attack_ranges;
-	int[] damage_amounts;
+	public int[] damage_amounts;
+	public string[] names;
+	public int[] costs;
 
 	//terrible naming here
 	//animation starts, ignore amount, after x time do damage, at next time stop doing damage
@@ -21,7 +23,7 @@ public class weapon_controller : MonoBehaviour {
 	float[] attack_ignore_animation_end; //how much animation to ignore at end
 
 
-	public weapons weapon;
+	public weapons weapon = weapons.bone_dagger;
 	public attack_methods attack_method;
 
 	public float range;
@@ -35,7 +37,7 @@ public class weapon_controller : MonoBehaviour {
 
 	float attack_start_time;
 
-	CircleCollider2D collider;
+	CircleCollider2D range_collider;
 
 	Color draw_color;
 
@@ -48,20 +50,20 @@ public class weapon_controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		attack_types = new attack_methods[] {
-			attack_methods.melee, attack_methods.melee, attack_methods.melee, attack_methods.melee, attack_methods.melee, 
-			attack_methods.melee, attack_methods.melee, attack_methods.ranged, attack_methods.ranged
-		};
-		attack_ranges = new float[] {1, 2, 3, 4, 5, 6, 7, 8 };
-		damage_amounts = new int[] { 9, 10, 11, 30, 13, 14, 40, 40 };
+		//none, bone_dagger, sword, bow
+		attack_types = new attack_methods[] { attack_methods.melee, attack_methods.melee, attack_methods.melee, attack_methods.ranged };
+		attack_ranges = new float[] {0, 1, 3, 5};
+		damage_amounts = new int[] { 1, 30, 40, 50};
+		names = new string[] {"Bone Dagger", "Sword", "Bow" };
+		costs = new int[] {10, 20, 30};
 
-		//hand, club, spiked_club, dagger, short_sword, sword, long_sword, bow, old_bow
-		attack_ignore_animation_start = new float[] { 1, 1, 1, 0.5f, 1, 1, 1, 0, 0 }; //do no damage for this long
-		attack_animation_damage_time = new float[] { 1, 1, 1, 1f, 1, 1, 1, 0, 0 }; //damage at this point
-		attack_ignore_animation_end = new float[] { 1, 1, 1, 0, 1, 1, 1, 0, 0}; //stop doing damage at this point
+		//none, bone_dagger, sword, bow
+		attack_ignore_animation_start = new float[] { 0, 0.5f, 0.5f, 0.25f }; //do no damage for this long
+		attack_animation_damage_time = new float[] { 0, 1, 1, 1 }; //damage at this point
+		attack_ignore_animation_end = new float[] { 0, 0, 0, 0}; //stop doing damage at this point
 		
 
-		collider = GetComponent <CircleCollider2D> ();
+		range_collider = GetComponent <CircleCollider2D> ();
 
 		Set_Weapon (weapon);
 
@@ -80,7 +82,7 @@ public class weapon_controller : MonoBehaviour {
 		range = attack_ranges [(int)weapon];
 		damage = damage_amounts [(int)weapon];
 		if (GetComponent <CircleCollider2D> () != null) {
-			collider.radius = range;
+			range_collider.radius = range;
 		}
 
 		attack_ignore_start = attack_ignore_animation_start [(int)weapon];
@@ -141,11 +143,7 @@ public class weapon_controller : MonoBehaviour {
 	}
 
 	void Set_Character_Attack_Animation(bool _on_off){
-		switch(weapon){
-		case weapons.dagger:
-			parent_animator.SetBool ("dagger_stab", _on_off);
-			break;
-		}
+		
 	}
 
 	void OnTriggerEnter2D(Collider2D _col){

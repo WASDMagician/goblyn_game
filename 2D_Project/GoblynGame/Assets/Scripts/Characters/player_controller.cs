@@ -70,6 +70,12 @@ public class player_controller : character_controller {
 		weapon.Set_Weapon (_weapon);
 	}
 
+	public override void Remove_Gold (int amount)
+	{
+		base.Remove_Gold (amount);
+		player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
+	}
+
 	void OnTriggerEnter2D(Collider2D _col){
 		if(_col.gameObject.layer == LayerMask.NameToLayer ("Enemy")){
 			enemy_controller soldier = _col.GetComponent <enemy_controller>();

@@ -14,7 +14,6 @@ public class sprite_tiler : MonoBehaviour {
 
 	public bool has_collider;
 
-
 	void Start(){
 		
 	}
@@ -34,6 +33,12 @@ public class sprite_tiler : MonoBehaviour {
 	}
 
 	public void Place_Sprites(){
+		//get rid of any currently existing sprites
+		int children = transform.childCount;
+		for(int i = children - 1; i > 0 ; i--){
+			GameObject.DestroyImmediate (transform.GetChild (i).gameObject);
+		}
+
 		if (sprite_to_tile != null && (x_iterations != 0 && y_iterations != 0)) {
 
 			Calculate_Height_And_Width ();
