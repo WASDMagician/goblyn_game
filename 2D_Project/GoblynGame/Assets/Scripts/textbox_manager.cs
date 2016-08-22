@@ -24,7 +24,7 @@ public class textbox_manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		text_box_positioner_object = GameObject.FindGameObjectWithTag ("text_box_positioner").gameObject;
+		/*text_box_positioner_object = GameObject.FindGameObjectWithTag ("text_box_positioner").gameObject;
 		text_box_positioner_rect = text_box_positioner_object.GetComponent <RectTransform> ();
 
 		text_box_object = GameObject.FindGameObjectWithTag ("text_box").gameObject;
@@ -32,7 +32,7 @@ public class textbox_manager : MonoBehaviour {
 		text_box_image = text_box_object.GetComponent <Image> ();
 
 		text_element_object = GameObject.FindGameObjectWithTag ("text_element").gameObject;
-		text_element_text = text_element_object.GetComponent <Text> ();
+		text_element_text = text_element_object.GetComponent <Text> ();*/
 
 	}
 

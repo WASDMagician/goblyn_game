@@ -1,4 +1,0 @@
-Do you want to buy a sword?
-
-Yes
-No
