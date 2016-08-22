@@ -17,6 +17,8 @@ TagManager:
   - money_error
   - weapon
   - Enemy
+  - menu
+  - event_system
   layers:
   - Default
   - TransparentFX
