@@ -4,6 +4,8 @@ using System.Collections;
 
 public class t_dialogue_box_controller : MonoBehaviour {
 
+	public static t_dialogue_box_controller dialogue_box_controller;
+
 	public dialogue_box dialogue;
 
 	public Text text_area;
@@ -20,6 +22,13 @@ public class t_dialogue_box_controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if(null == dialogue_box_controller){
+			dialogue_box_controller = this;
+		}
+		else if(this != dialogue_box_controller){
+			Destroy (gameObject);
+		}
+
 		Setup_Dialogue_Box ();
 	}
 
@@ -28,7 +37,7 @@ public class t_dialogue_box_controller : MonoBehaviour {
 		Set_Page (current_page);
 	}
 
-	void Setup_Dialogue_Box(dialogue_box _dialogue_box){
+	public void Setup_Dialogue_Box(dialogue_box _dialogue_box){
 		dialogue = _dialogue_box;
 		current_page = 0;
 		Set_Page (current_page);
@@ -82,7 +91,11 @@ public class t_dialogue_box_controller : MonoBehaviour {
 		}
 	}
 
+	public void Activate(){
+		this.gameObject.transform.GetChild (0).gameObject.SetActive (true);
+	}
+
 	public void Exit(){
-		this.gameObject.SetActive (false);
+		this.gameObject.transform.GetChild (0).gameObject.SetActive (false);
 	}
 }

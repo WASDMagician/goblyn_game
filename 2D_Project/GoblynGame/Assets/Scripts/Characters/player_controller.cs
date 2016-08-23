@@ -31,6 +31,9 @@ public class player_controller : character_controller {
 		animator = GetComponent <Animator> ();
 		weapon = GetComponentInChildren <weapon_controller> ();
 		dead_soldiers = new List<enemy_controller> ();
+		if (null == player_hud) {
+			player_hud = GameObject.FindObjectOfType <player_hud_controller> ();
+		}
 		player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
 		armor = GetComponentInChildren <armor_controller> ();
 	}
@@ -41,6 +44,9 @@ public class player_controller : character_controller {
 		animator = GetComponent <Animator> ();
 		weapon = GetComponentInChildren <weapon_controller> ();
 		dead_soldiers = new List<enemy_controller> ();
+		if (null == player_hud) {
+			player_hud = GameObject.FindObjectOfType <player_hud_controller> ();
+		}
 		player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
 		armor = GetComponentInChildren <armor_controller> ();
 	}
