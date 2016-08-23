@@ -2,16 +2,40 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class player_controller : character_controller {
 
 	//temp color list
 	Color[] armor_colors;
 
+	public static player_controller player_object;
+
 	public List<enemy_controller> dead_soldiers;
 	public player_hud_controller player_hud;
+	GameObject menu_item;
+
+	void Awake(){
+		DontDestroyOnLoad (this.gameObject);
+		if(null == player_object){
+			player_object = this;
+		}
+		else if(this != player_object){
+			Destroy (gameObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
+		armor_colors = new Color[] { Color.white, Color.yellow, Color.red, Color.blue };
+		movement = GetComponent <character_movement> ();
+		animator = GetComponent <Animator> ();
+		weapon = GetComponentInChildren <weapon_controller> ();
+		dead_soldiers = new List<enemy_controller> ();
+		player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
+		armor = GetComponentInChildren <armor_controller> ();
+	}
+
+	void OnLevelWasLoaded(){
 		armor_colors = new Color[] { Color.white, Color.yellow, Color.red, Color.blue };
 		movement = GetComponent <character_movement> ();
 		animator = GetComponent <Animator> ();

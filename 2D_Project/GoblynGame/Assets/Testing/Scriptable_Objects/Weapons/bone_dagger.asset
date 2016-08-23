@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c435df8d06d1aff4e9b9d4a5a9366e6b, type: 3}
+  m_Name: bone_dagger
+  m_EditorClassIdentifier: 
+  type: 0
+  arrow_prefab: {fileID: 147010, guid: 20e51b0e4af9a1347a837f1fe3d17c64, type: 2}
+  sprite_image: {fileID: 21300000, guid: a66efa286aedf0e4bb9664972c656c58, type: 3}
+  name: Bone Dagger
+  damage: 10
+  cost: 50
+  range: 3
+  attack_ignore_animation_start: 0.5
+  attack_animation_damage_duraction: 0.25
+  attack_ignore_animation_end: 0.5
