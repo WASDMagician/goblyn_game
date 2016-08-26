@@ -11,8 +11,9 @@ public class player_controller : character_controller {
 	public static player_controller player_object;
 
 	public List<enemy_controller> dead_soldiers;
-	public player_hud_controller player_hud;
 	GameObject menu_item;
+
+	int max_health = 100; //bad
 
 	void Awake(){
 		DontDestroyOnLoad (this.gameObject);
@@ -31,10 +32,7 @@ public class player_controller : character_controller {
 		animator = GetComponent <Animator> ();
 		weapon = GetComponentInChildren <weapon_controller> ();
 		dead_soldiers = new List<enemy_controller> ();
-		if (null == player_hud) {
-			player_hud = GameObject.FindObjectOfType <player_hud_controller> ();
-		}
-		player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
+		t_ui_player_updater.player_updater.Set_Hud_Values (max_health, health, 1, gold, teeth);
 		armor = GetComponentInChildren <armor_controller> ();
 	}
 
@@ -44,10 +42,7 @@ public class player_controller : character_controller {
 		animator = GetComponent <Animator> ();
 		weapon = GetComponentInChildren <weapon_controller> ();
 		dead_soldiers = new List<enemy_controller> ();
-		if (null == player_hud) {
-			player_hud = GameObject.FindObjectOfType <player_hud_controller> ();
-		}
-		player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
+		t_ui_player_updater.player_updater.Set_Hud_Values (max_health, health, 1, gold, teeth);
 		armor = GetComponentInChildren <armor_controller> ();
 	}
 	
@@ -81,12 +76,12 @@ public class player_controller : character_controller {
 				if(soldier.Get_Gold () > 0){
 					Add_Gold (soldier.Get_Gold ());
 					soldier.Remove_Gold (soldier.Get_Gold ());
-					player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
+					t_ui_player_updater.player_updater.Set_Hud_Values (max_health, health, 1, gold, teeth);
 				}
 				else if(soldier.Get_Teeth () > 0){
 					Add_Teeth (soldier.Get_Teeth ());
 					soldier.Remove_Teeth (soldier.Get_Teeth ());
-					player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
+					t_ui_player_updater.player_updater.Set_Hud_Values (max_health, health, 1, gold, teeth);
 				}
 				else{
 					armor.Set_Armor (soldier.Get_Armor ());
@@ -103,7 +98,7 @@ public class player_controller : character_controller {
 	public override void Remove_Gold (int amount)
 	{
 		base.Remove_Gold (amount);
-		player_hud.Update_Stats (Get_Gold (), Get_Teeth ());
+		t_ui_player_updater.player_updater.Set_Hud_Values (max_health, health, 1, gold, teeth);
 	}
 
 	void OnTriggerEnter2D(Collider2D _col){
