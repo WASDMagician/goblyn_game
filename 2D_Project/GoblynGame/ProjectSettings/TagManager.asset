@@ -3,22 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - text_box_positioner
-  - text_box
-  - text_element
-  - enemy
-  - item_one
-  - item_two
-  - item_three
-  - buy_button
-  - cancel_button
-  - shop_item
-  - money_error
-  - weapon
-  - Enemy
-  - menu
-  - event_system
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -28,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Enemy
+  - Jumpable
+  - 
   - 
   - 
   - 
