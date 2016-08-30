@@ -25,7 +25,8 @@ public class dialogue_box : ScriptableObject {
 		public int teeth_amount;
 		public int gold_amount;
 		public int health_amount;
-		
+
+		public UnityAction my_action;
 	}
 	public dialogue_page[] pages;
 }

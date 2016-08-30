@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe25bfb76c12b243997cd3073b1df40, type: 3}
+  m_Name: test_dialogue
+  m_EditorClassIdentifier: 
+  pages:
+  - dialogue_area: "First section\t"
+    answer_one: Answer one
+    answer_two: Answer two
+    answer_one_page_index: 1
+    answer_one_action_index: -6
+    answer_two_page_index: 2
+    answer_two_action_index: -7
+    teeth_amount: 0
+    gold_amount: 0
+    health_amount: 0
+  - dialogue_area: Second section.
+    answer_one: End
+    answer_two: End
+    answer_one_page_index: -1
+    answer_one_action_index: -1
+    answer_two_page_index: -1
+    answer_two_action_index: -1
+    teeth_amount: 0
+    gold_amount: 0
+    health_amount: 0
+  - dialogue_area: "Whatever you want\t"
+    answer_one: Blah
+    answer_two: Blah
+    answer_one_page_index: -1
+    answer_one_action_index: -1
+    answer_two_page_index: -1
+    answer_two_action_index: -1
+    teeth_amount: 0
+    gold_amount: 0
+    health_amount: 0
