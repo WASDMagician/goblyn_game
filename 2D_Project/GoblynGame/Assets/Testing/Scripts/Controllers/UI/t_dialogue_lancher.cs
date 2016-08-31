@@ -18,9 +18,14 @@ public class t_dialogue_lancher : MonoBehaviour {
 	}
 
 	void Handle_User_Input(){
-		if(Input.GetKeyDown (KeyCode.E)){
+		if (Input.GetKeyDown (KeyCode.E)) {
 			Launch_Dialogue_box ();
 		}
+
+		if (Input.GetKey (KeyCode.Escape)) {
+			Deactivate_Dialogue_Box ();
+		}
+
 	}
 
 	void Launch_Dialogue_box(){
