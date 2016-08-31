@@ -32,9 +32,7 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	}
 
 	protected virtual void Health_Check(){
-		print ("Health Check");
 		if(Get_Health () <= 0){
-			print ("KILL");
 			Kill ();
 		}
 	}
@@ -60,7 +58,6 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	}
 		
 	public virtual void Kill(){
-		print ("DESTROOOY");
 		Destroy (this.gameObject);
 	}
 

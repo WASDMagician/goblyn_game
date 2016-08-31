@@ -6,10 +6,11 @@ public class t_weapon : MonoBehaviour {
 
 	//components
 	protected Animator weapon_animator;
-
 	//weapon varaibles
 	[SerializeField]
 	protected int weapon_damage_amount;
+	[SerializeField]
+	protected float weapon_range;
 
 	//animation values
 	//amount of time at start of attack to not do damage
@@ -27,6 +28,10 @@ public class t_weapon : MonoBehaviour {
 
 	protected virtual void Initialise(){
 		weapon_animator = GetComponent <Animator> ();
+	}
+
+	public float Get_Weapon_Range(){
+		return weapon_range;
 	}
 
 	/// <summary>

@@ -77,8 +77,9 @@ public class t_player_controller : t_character_controller {
 	}
 
 	public void Remove_Weapon(){
-		if(null != GetComponentInChildren<t_weapon>()){
-			Destroy (GetComponentInChildren <t_weapon>().gameObject);
+		t_weapon[] weapons = GetComponentsInChildren <t_weapon> ();
+		for(int i = 0; i < weapons.Length; i++){
+			Destroy (weapons[i].gameObject);
 		}
 	}
 
@@ -96,8 +97,9 @@ public class t_player_controller : t_character_controller {
 	}
 
 	public void Remove_Armor(){
-		if(null != GetComponentInChildren <t_armor>()){
-			Destroy (GetComponentInChildren <t_armor>().gameObject);
+		t_armor[] armors = GetComponentsInChildren <t_armor> ();
+		for(int i = 0; i < armors.Length; i++){
+			Destroy (armors[i].gameObject);
 		}
 	}
 		
@@ -109,7 +111,7 @@ public class t_player_controller : t_character_controller {
 		return armor_id;
 	}
 
-	void Update_All_UI_Elements(){
+	public void Update_All_UI_Elements(){
 		Update_UI_Health ();
 		Update_UI_Gold ();
 		Update_UI_Teeth ();
@@ -153,7 +155,7 @@ public class t_player_controller : t_character_controller {
 			Debug.Log (e.ToString ());
 		}
 	}
-
+	
 
 	//override character_controller functions
 	public override void Set_Gold (int _gold)
