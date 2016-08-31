@@ -31,29 +31,41 @@ public class t_enemy_movement_script : t_character_movement {
 	}
 
 	void Movement_Decider(){
-		float player_distance = Vector3.Distance (this.transform.position, t_player_controller.player_controller.transform.position);
-		if (null != t_player_controller.player_controller && player_distance < enemy_chase_distance) {
-				character_direction = Get_Player_Direction ();
-				character_last_direction = character_direction;
-				Sprite_Direction_Check ();
+		if(null != t_player_controller.player_controller){
+			float player_distance = Vector3.Distance (this.transform.position, t_player_controller.player_controller.transform.position);
+			if(player_distance < enemy_chase_distance){
+				Chase_Player ();
+			}
+			else{
+				Patrol ();
+			}
 		}
 		else{
-			if(movement_direction == -1){
-				if (this.transform.position.x < left_limit.x) {
-					movement_direction = 1;
-					character_direction = 1;
-					character_last_direction = character_direction;
-					Sprite_Direction_Check ();
-				} 
-			}
-			else if(movement_direction == 1){
-				if (this.transform.position.x > right_limit.x) {
-					movement_direction = -1;
-					character_direction = -1;
-					character_last_direction = character_direction;
-					Sprite_Direction_Check ();
-				} 
-			}
+			Patrol ();
+		}
+	}
+
+	void Chase_Player(){
+		character_direction = Get_Player_Direction ();
+		character_last_direction = character_direction;
+		Sprite_Direction_Check ();
+	}
+
+	void Patrol(){
+		if (movement_direction == -1) {
+			if (this.transform.position.x < left_limit.x) {
+				movement_direction = 1;
+				character_direction = 1;
+				character_last_direction = character_direction;
+				Sprite_Direction_Check ();
+			} 
+		} else if (movement_direction == 1) {
+			if (this.transform.position.x > right_limit.x) {
+				movement_direction = -1;
+				character_direction = -1;
+				character_last_direction = character_direction;
+				Sprite_Direction_Check ();
+			} 
 		}
 	}
 
