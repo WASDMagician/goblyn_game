@@ -38,7 +38,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &175114
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -50,6 +50,22 @@ GameObject:
   - 50: {fileID: 5020582}
   m_Layer: 0
   m_Name: bone_dagger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &193422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 484806}
+  - 114: {fileID: 11483412}
+  m_Layer: 0
+  m_Name: goblin_armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,12 +106,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.93, y: 1.58, z: 0}
+  m_LocalPosition: {x: -0.019999921, y: 0.029999971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 448466}
-  m_RootOrder: 2
+  m_Father: {fileID: 484548}
+  m_RootOrder: 0
 --- !u!4 &448466
 Transform:
   m_ObjectHideFlags: 1
@@ -109,7 +125,7 @@ Transform:
   m_Children:
   - {fileID: 484548}
   - {fileID: 411264}
-  - {fileID: 430802}
+  - {fileID: 484806}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &484548
@@ -122,9 +138,23 @@ Transform:
   m_LocalPosition: {x: 0.95, y: 1.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 430802}
   m_Father: {fileID: 448466}
   m_RootOrder: 0
+--- !u!4 &484806
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.830367, y: 0.759649, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 448466}
+  m_RootOrder: 2
 --- !u!50 &5016472
 Rigidbody2D:
   serializedVersion: 2
@@ -198,11 +228,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da61d16b94b71c48a1b57fcc8a6813f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character_rigidbody: {fileID: 0}
+  character_sprite: {fileID: 0}
   character_speed: 5
   character_jump_speed: 0
-  jumpable_layer:
-    serializedVersion: 2
-    m_Bits: 256
+  character_direction: 1
+  character_last_direction: 1
+  jumpable_layer: {}
+  cast_length: 0
+  player_width: 0
+  cast_offset: {x: 0, y: 0}
   enemy_chase_distance: 5
 --- !u!114 &11448100
 MonoBehaviour:
@@ -215,11 +250,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8cc72dc079c954b9b121bac4d312ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon_animator: {fileID: 0}
   weapon_damage_amount: 20
+  weapon_range: 2
   weapon_animation_ignore_start_time: 1
   weapon_animation_damage_time: 1
   weapon_animation_ignore_end_time: 1
-  weapon_range: 2
+  can_attack: 1
+  weapon_range_collider: {fileID: 0}
+  enemies_in_range: []
+  own_controller: {fileID: 0}
+  damage_start_time: 0
 --- !u!114 &11453296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon_sprite: {fileID: 21300000, guid: b7da6cd9fe6e9844ba338f9af8bdb727, type: 3}
-  weapon_name: Bone Dagger
+  weapon_name: 426f6e6520446167676572
   weapon_damage: 20
   weapon_cost: 10
 --- !u!114 &11471018
@@ -251,6 +292,13 @@ MonoBehaviour:
   character_gold: 50
   character_teeth: 32
   character_defense: 1
+  is_invulnerable: 0
+  health_bar: {fileID: 0}
+  enemy_armor_object: {fileID: 0}
+  enemy_armor_script: {fileID: 0}
+  enemy_weapon_object: {fileID: 0}
+  enemy_weapon_script: {fileID: 0}
+  enemy_attack_range: 0
 --- !u!114 &11482098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,6 +314,22 @@ MonoBehaviour:
   enemy_health_object: {fileID: 0}
   background_image: {fileID: 0}
   foreground_image: {fileID: 0}
+  health_bar_position: {fileID: 0}
+  enemy_controller: {fileID: 0}
+--- !u!114 &11483412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b00c1ffc1b596489550d0506b554bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor_defense_amount: 0
+  armor_health: 1
+  goblin_alarm_rating: 0
 --- !u!212 &21231318
 SpriteRenderer:
   m_ObjectHideFlags: 1
