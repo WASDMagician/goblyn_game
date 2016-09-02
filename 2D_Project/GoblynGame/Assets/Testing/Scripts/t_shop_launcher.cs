@@ -5,19 +5,13 @@ public class t_shop_launcher : MonoBehaviour {
 
 	[SerializeField]
 	protected GameObject[] shop_items;
-	[SerializeField]
-	protected bool requires_key_input;
 
 	private bool entered_trigger_zone;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(true == entered_trigger_zone){
+		if(true == entered_trigger_zone && (true == t_player_states.Is_Free_Moving () || true == t_player_states.Is_In_Shop () 
+			|| t_player_states.Is_In_Dialogue ())){
 			Handle_User_Input ();
 		}
 	}
@@ -30,11 +24,6 @@ public class t_shop_launcher : MonoBehaviour {
 				StartCoroutine (Add_Items ());
 			}
 		}
-		if(Input.GetKeyDown (KeyCode.Escape)){
-			if(true == t_ui_shop_visibility_controller.shop_visibility_controller.shop_active){
-				Close_Shop ();
-			}
-		}
 	}
 
 	IEnumerator Add_Items(){
@@ -42,9 +31,14 @@ public class t_shop_launcher : MonoBehaviour {
 			yield return new WaitForSeconds (0);
 		}
 		for(int i = 0; i < shop_items.Length; i++){
-			print ("ADDING");
-			GameObject shop_item = Instantiate (shop_items [i]);
-			t_ui_shop_items_panel_controller.shop_panel_controller.Add_Item (shop_item);
+			if (i == 0) {
+				GameObject shop_item = Instantiate (shop_items [i]);
+				t_ui_shop_items_panel_controller.shop_panel_controller.Add_Item (shop_item, true);
+			}
+			else{
+				GameObject shop_item = Instantiate (shop_items [i]);
+				t_ui_shop_items_panel_controller.shop_panel_controller.Add_Item (shop_item, false);
+			}
 		}
 	}
 

@@ -35,19 +35,22 @@ public class t_player_controller : t_character_controller {
 	}
 
 	void Handle_User_Input(){
+
 		//not liking this use of player states but can't think of another way to do it
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape) && (t_player_states.Is_Free_Moving () || t_player_states.Is_In_Menu ())) {
 			t_pause_menu_controller.pause_controller.Toggle_Pause ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.A)) {
-			if (null != player_weapon_script) {
-				player_weapon_script.Attack ();
+		if (t_player_states.Is_Free_Moving ()) {
+			if (Input.GetKeyDown (KeyCode.A)) {
+				if (null != player_weapon_script) {
+					player_weapon_script.Attack ();
+				}
 			}
-		}
 
-		if (Input.GetKeyDown (KeyCode.D)) {
-			Load_Armor (11);
+			if (Input.GetKeyDown (KeyCode.D)) {
+				Load_Armor (11);
+			}
 		}
 	}
 
@@ -187,18 +190,5 @@ public class t_player_controller : t_character_controller {
 	{
 		//run player death animation
 		Destroy (this.gameObject);
-	}
-
-	void OnTriggerEnter2D(Collider2D _col){
-		if(_col.GetComponent<t_pickup>() != null){
-			_col.GetComponent <t_pickup> ().Set_Collided_With_Player (true);
-		}
-	}
-
-	void OnTriggerExit2D(Collider2D _col){
-		if(_col.GetComponent <t_pickup>() != null){
-			_col.GetComponent <t_pickup>().Set_Collided_With_Player (false);
-		}
-	}
-	
+	}	
 }

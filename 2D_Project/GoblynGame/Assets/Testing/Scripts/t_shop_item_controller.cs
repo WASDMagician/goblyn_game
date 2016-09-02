@@ -9,11 +9,18 @@ public class t_shop_item_controller : MonoBehaviour {
 	Text item_description;
 	Text item_cost;
 
-	public Sprite image;
-	public string name;
-	public string description;
-	public int cost;
-	public int item_id;
+	[SerializeField]
+	private Sprite image;
+	[SerializeField]
+	[Multiline]
+	private string name;
+	[SerializeField]
+	[Multiline()]
+	private string description;
+	[SerializeField]
+	private int cost;
+	[SerializeField]
+	private int item_id;
 
 	void Start(){
 		item_image = this.transform.GetChild (0).GetComponent <Image> ();
@@ -29,4 +36,26 @@ public class t_shop_item_controller : MonoBehaviour {
 		item_description.text = description;
 		item_cost.text = "Cost: " + cost.ToString ();
 	}
+
+	public Sprite Get_Image(){
+		return image;
+	}
+
+	public string Get_Name(){
+		return name;
+	}
+
+	public string Get_Description(){
+		return description;
+	}
+
+	public int Get_Cost(){
+		return cost;
+	}
+
+	public int Get_ID(){
+		return item_id;
+	}
+
+
 }

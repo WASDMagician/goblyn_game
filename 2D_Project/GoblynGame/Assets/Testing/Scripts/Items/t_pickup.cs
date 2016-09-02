@@ -16,7 +16,9 @@ public abstract class t_pickup : MonoBehaviour {
 			Pickup_Item ();
 		}
 		else{
-			Handle_User_Input ();
+			if (t_player_states.Is_Free_Moving ()) {
+				Handle_User_Input ();
+			}
 		}
 	}
 
@@ -27,6 +29,13 @@ public abstract class t_pickup : MonoBehaviour {
 	}
 
 	public abstract void Pickup_Item ();
+
+	void OnTriggerEnter2D(Collider2D _col){
+		if(_col.gameObject == t_player_controller.player_controller.gameObject){
+			print ("Collided");
+			collided_with_player = true;
+		}
+	}
 
 
 }

@@ -17,11 +17,13 @@ public class t_ui_shop_visibility_controller : MonoBehaviour {
 	}
 
 	public void Enable_Shop(){
+		t_player_states.Set_In_Shop ();
 		this.transform.GetChild (0).gameObject.SetActive (true);
 		shop_active = true;
 	}
 
 	public void Disable_Shop(){
+		t_player_states.Set_Free_Moving ();
 		this.transform.GetChild (0).gameObject.SetActive (false);
 		shop_active = false;
 	}
