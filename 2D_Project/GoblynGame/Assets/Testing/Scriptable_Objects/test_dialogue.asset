@@ -12,33 +12,45 @@ MonoBehaviour:
   m_Name: test_dialogue
   m_EditorClassIdentifier: 
   pages:
-  - dialogue_area: "First section\t"
-    answer_one: Answer one
-    answer_two: Answer two
-    answer_one_page_index: 1
-    answer_one_action_index: -6
-    answer_two_page_index: 2
-    answer_two_action_index: -7
-    teeth_amount: 0
-    gold_amount: 0
-    health_amount: 0
-  - dialogue_area: Second section.
-    answer_one: End
-    answer_two: End
-    answer_one_page_index: -1
-    answer_one_action_index: -1
-    answer_two_page_index: -1
-    answer_two_action_index: -1
-    teeth_amount: 0
-    gold_amount: 0
-    health_amount: 0
-  - dialogue_area: "Whatever you want\t"
-    answer_one: Blah
-    answer_two: Blah
-    answer_one_page_index: -1
-    answer_one_action_index: -1
-    answer_two_page_index: -1
-    answer_two_action_index: -1
-    teeth_amount: 0
-    gold_amount: 0
-    health_amount: 0
+  - page_text: Are, or have you even been, a Goblin?
+    option_buttons:
+    - button_text: Yes.
+      go_to_page: 1
+      action: 1
+      action_value: -50
+    - button_text: No.
+      go_to_page: 2
+      action: 1
+      action_value: -100
+    - button_text: Ook?
+      go_to_page: 3
+      action: 2
+      action_value: 500
+  - page_text: 'We don''t like Goblins round these parts.
+
+      Bugger off!
+
+      -50 health.'
+    option_buttons:
+    - button_text: Continue.
+      go_to_page: -1
+      action: 0
+      action_value: 0
+  - page_text: 'YOU LIE!
+
+      -100 health.'
+    option_buttons:
+    - button_text: Close.
+      go_to_page: -1
+      action: 0
+      action_value: 0
+  - page_text: 'Good.
+
+      Here, take all my money.
+
+      +500 gold.'
+    option_buttons:
+    - button_text: Close.
+      go_to_page: -1
+      action: 0
+      action_value: 0

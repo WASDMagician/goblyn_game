@@ -7,18 +7,16 @@ public class t_melee_weapon : t_weapon {
 
 	protected CircleCollider2D weapon_range_collider;
 	protected List<t_character_controller> enemies_in_range;
-	protected t_character_controller own_controller;
-	protected float damage_start_time;
 
+	protected float damage_start_time;
 	void Start(){
 		Initialise ();
-		own_controller = GetComponentInParent <t_character_controller> ();
+
 	}
 
 	protected override void Initialise ()
 	{
 		base.Initialise ();
-
 		enemies_in_range = new List<t_character_controller> ();
 		weapon_range_collider = GetComponent <CircleCollider2D> ();
 		weapon_range_collider.radius = weapon_range;
@@ -28,12 +26,12 @@ public class t_melee_weapon : t_weapon {
 	protected void Damage_Enemies(){
 		for(int i = 0; i < enemies_in_range.Count; i++){
 			//add a check for direction here
-			if (enemies_in_range [i] != own_controller) {
+			//if (enemies_in_range [i] != own_controller) { //added collider ignore, check if works, remove code here if so
 				if (!enemies_in_range [i].Is_Invulnerable ()) {
 					enemies_in_range [i].Damage (weapon_damage_amount);
 					StartCoroutine (enemies_in_range [i].Make_Invulnerable (weapon_animation_damage_time + weapon_animation_ignore_end_time)); //needs offsetting by current time
 				}
-			}
+			//}
 		}
 	}
 

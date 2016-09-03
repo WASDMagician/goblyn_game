@@ -12,6 +12,4 @@ public static class item_codes : object {
 		{12, "Items/Armor/peasant_armor"},
 		{13, "Items/Armor/knight_armor"}
 	};
-
-	
 }

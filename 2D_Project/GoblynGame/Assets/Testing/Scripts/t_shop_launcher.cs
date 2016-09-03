@@ -58,7 +58,7 @@ public class t_shop_launcher : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D _col){
 		if (null != _col.GetComponent <t_player_controller> ()) {
-			entered_trigger_zone = true;
+			entered_trigger_zone = false;
 		}
 	}
 

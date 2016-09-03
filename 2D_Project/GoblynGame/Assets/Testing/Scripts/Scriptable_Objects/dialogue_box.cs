@@ -6,27 +6,19 @@ using UnityEngine.Events;
 public class dialogue_box : ScriptableObject {
 	[System.Serializable]
 	public class dialogue_page{
-		//maybe look into how to restrict string length
-		[TextArea(1, 10)]
-		public string dialogue_area;
-		[TextArea(1, 3)]
-		public string answer_one;
-		[TextArea(1, 3)]
-		public string answer_two;
-
-		[Space(10)]
-		public int answer_one_page_index = -1;
-		public int answer_one_action_index = 0;
-		[Space(10)]
-		public int answer_two_page_index = -1;
-		public int answer_two_action_index = 0;
-		[Space(10)]
-		[Header("Amount of each item to give, depends on action index")]
-		public int teeth_amount;
-		public int gold_amount;
-		public int health_amount;
-
-		public UnityAction my_action;
+		[System.Serializable]
+		public class dialogue_options{
+			[Multiline]
+			public string button_text;
+			public int go_to_page;
+			public enum actions {none, modify_health, modify_gold, modify_teeth, give_item};
+			public actions action;
+			public int action_value;
+		}
+		[Multiline]
+		public string page_text;
+		public dialogue_options[] option_buttons;
 	}
+
 	public dialogue_page[] pages;
 }

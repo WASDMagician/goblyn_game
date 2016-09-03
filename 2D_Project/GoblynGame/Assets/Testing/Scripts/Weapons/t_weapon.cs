@@ -23,11 +23,14 @@ public class t_weapon : MonoBehaviour {
 	[SerializeField]
 	protected float weapon_animation_ignore_end_time;
 
+	protected t_character_controller own_controller; //exclude self from collided characters
 	protected bool can_attack = true; 
 
 
 	protected virtual void Initialise(){
 		weapon_animator = GetComponent <Animator> ();
+		own_controller = GetComponentInParent <t_character_controller> ();
+		Physics2D.IgnoreCollision (this.gameObject.GetComponent <Collider2D>(), own_controller.gameObject.GetComponent <Collider2D>());
 	}
 
 	public float Get_Weapon_Range(){
