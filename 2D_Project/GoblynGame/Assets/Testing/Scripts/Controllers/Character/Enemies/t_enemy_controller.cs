@@ -11,8 +11,15 @@ public class t_enemy_controller : t_character_controller{
 	protected GameObject enemy_weapon_object;
 	protected t_weapon enemy_weapon_script;
 
+	protected t_enemy_movement_script enemy_movement_script;
+
 	[SerializeField]
 	float enemy_attack_range;
+
+	private bool gold_looted = false;
+	private bool teeth_looted = false;
+	private bool weapon_looted = false;
+	private bool armor_looted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,13 +29,17 @@ public class t_enemy_controller : t_character_controller{
 
 		enemy_weapon_script = GetComponentInChildren <t_weapon> ();
 		enemy_weapon_object = enemy_weapon_script.gameObject;
+
+		enemy_movement_script = GetComponent <t_enemy_movement_script> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		health_bar.Update_Health_Bar (); //updates health bar *position* rename it.
-		if(true == Player_In_Attack_Distance ()){ //refactor to not happen each frame?
-			enemy_weapon_script.Attack ();
+		if (true == is_alive) {
+			if (true == Player_In_Attack_Distance ()) { //refactor to not happen each frame?
+				enemy_weapon_script.Attack ();
+			}
 		}
 	}
 
@@ -57,6 +68,46 @@ public class t_enemy_controller : t_character_controller{
 	public override void Kill ()
 	{
 		//play death animation
-		Destroy (this.gameObject);
+		Set_Alive (false);
+		GetComponent <t_enemy_movement_script>().Stop_Movement ();
+		GetComponent <Collider2D>().isTrigger = true;
+		GetComponent <Rigidbody2D>().isKinematic = true;
+		this.transform.Rotate (new Vector3(0, 0, -90));
+		//Destroy (this.gameObject);
+	}
+
+	public void Loot(){
+		if(false == gold_looted){
+			t_player_controller.player_controller.Set_Gold (t_player_controller.player_controller.Get_Gold () + Get_Gold ());
+			string message = "Looted " + Get_Gold ().ToString () + " gold.\nNext item: " + Get_Teeth ().ToString () + " teeth.";
+			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
+			t_ui_warning_box.warning_box.Set_Warning_Message (message);
+			gold_looted = true;
+
+		}
+		else if(false == teeth_looted){
+			t_player_controller.player_controller.Set_Teeth (t_player_controller.player_controller.Get_Teeth () + Get_Teeth ());
+			string message = "Looted " + Get_Teeth ().ToString () + " teeth.\nNext item: " + item_codes.game_item_names[weapon_id];
+			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
+			t_ui_warning_box.warning_box.Set_Warning_Message (message);
+			teeth_looted = true;
+		}
+		else if(false == weapon_looted){
+			t_player_controller.player_controller.Load_Weapon (weapon_id);
+			string message = "Looted: " + item_codes.game_item_names [weapon_id] + ".\nNext item: " + item_codes.game_item_names [armor_id];
+			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
+			t_ui_warning_box.warning_box.Set_Warning_Message (message);
+			weapon_looted = true;
+		}
+		else if(false == armor_looted){
+			t_player_controller.player_controller.Load_Armor (armor_id);
+			string message = "Looted: " + item_codes.game_item_names [armor_id] + ".\nNo more items to loot.";
+			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
+			t_ui_warning_box.warning_box.Set_Warning_Message ("Looted armor");
+			armor_looted = true;
+		}
+		else{
+			//nothing left to loot
+		}
 	}
 }

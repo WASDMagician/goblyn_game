@@ -8,6 +8,8 @@ public class t_enemy_movement_script : t_character_movement {
 	[SerializeField]
 	protected float patrol_distance_from_start;
 
+	t_enemy_controller enemy_controller;
+
 	private Vector3 left_limit;
 	private Vector3 right_limit;
 
@@ -21,13 +23,15 @@ public class t_enemy_movement_script : t_character_movement {
 
 		right_limit = this.transform.position;
 		right_limit.x += patrol_distance_from_start;
-
+		enemy_controller = GetComponent <t_enemy_controller> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Movement_Decider ();
-		Move ();
+		if (true == enemy_controller.Is_Alive ()) {
+			Movement_Decider ();
+			Move ();
+		}
 	}
 
 	void Movement_Decider(){
@@ -69,6 +73,9 @@ public class t_enemy_movement_script : t_character_movement {
 		}
 	}
 
+	public void Stop_Movement(){
+		character_rigidbody.velocity = Vector2.zero;
+	}
 
 
 	int Get_Player_Direction(){

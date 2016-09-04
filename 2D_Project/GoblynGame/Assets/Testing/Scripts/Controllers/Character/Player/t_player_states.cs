@@ -2,7 +2,7 @@
 using System.Collections;
 
 public static class t_player_states : object {
-	public enum states {free_moving, in_menu, in_dialogue, in_shop};
+	public enum states {free_moving, in_menu, in_dialogue, in_shop, corpse_interaction};
 	static states state = states.free_moving;
 	static states previous_state = states.free_moving;
 
@@ -40,6 +40,15 @@ public static class t_player_states : object {
 	public static void Set_In_Shop(){
 		Set_Previous_State ();
 		state = states.in_shop;
+	}
+
+	public static bool Is_Interacting_With_Corpse(){
+		return states.corpse_interaction == state;
+	}
+
+	public static void Set_Corpse_Interaction(){
+		Set_Previous_State ();
+		state = states.corpse_interaction;
 	}
 
 	public static states Get_Current_State(){

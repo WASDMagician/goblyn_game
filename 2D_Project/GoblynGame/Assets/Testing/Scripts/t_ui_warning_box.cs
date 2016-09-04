@@ -58,21 +58,17 @@ public class t_ui_warning_box : MonoBehaviour {
 
 	public void Enable_Warning_Text_Object(){
 		warning_is_active = true;
-		t_player_states.Set_In_Dialogue ();
 		this.transform.GetChild (0).gameObject.SetActive (true);
 		StartCoroutine (Warning_Box_Timer ());
 	}
 
 	public void Disable_Warning_Text_Object(){
 		warning_is_active = false;
-		t_player_states.Return_To_Previous_State ();
 		this.transform.GetChild (0).gameObject.SetActive (false);
 	}
 
 	IEnumerator Warning_Box_Timer(){
-		print ("Call");
 		yield return new WaitForSeconds (warning_appearance_length);
-		print ("Second Call");
 		Disable_Warning_Text_Object ();
 	}
 }

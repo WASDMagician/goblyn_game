@@ -11,10 +11,17 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	protected int character_gold;
 	[SerializeField]
 	protected int character_teeth;
+
 	[SerializeField]
-	protected int character_defense; // @REMOVE THIS //this is a temp value for UI update
+	protected int weapon_id;
+
+	//armor values and components
+	[SerializeField]
+	protected int armor_id = 11;
 
 	protected bool is_invulnerable;
+
+	protected bool is_alive = true;
 
 	public void Set_Max_Health(int _max_health){
 		character_max_health = _max_health;
@@ -32,7 +39,7 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	}
 
 	protected virtual void Health_Check(){
-		if(Get_Health () <= 0){
+		if(Get_Health () <= 0 && true == is_alive){
 			Kill ();
 		}
 	}
@@ -56,6 +63,14 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	public int Get_Teeth(){
 		return character_teeth;
 	}
+
+	public int Get_Weapon_ID(){
+		return weapon_id;
+	}
+
+	public int Get_Armor_ID(){
+		return armor_id;
+	}
 		
 	public virtual void Kill(){
 		Destroy (this.gameObject);
@@ -74,4 +89,14 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	public bool Is_Invulnerable(){
 		return is_invulnerable;
 	}
+
+	public bool Is_Alive(){
+		return is_alive;
+	}
+
+	public void Set_Alive(bool _alive){
+		is_alive = _alive;
+	}
+
+
 }

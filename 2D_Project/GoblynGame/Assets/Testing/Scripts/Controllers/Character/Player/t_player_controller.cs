@@ -6,17 +6,16 @@ public class t_player_controller : t_character_controller {
 	public static t_player_controller player_controller;
 
 	//weapon values and components
-	[SerializeField]
-	private int weapon_id;
 	private GameObject weapon_position;
 	public GameObject player_weapon_object;
 	public t_weapon player_weapon_script;
 
-	//armor values and components
 	[SerializeField]
-	private int armor_id = 11;
 	public GameObject player_armor_object;
 	public t_armor player_armor_script;
+
+
+	protected t_enemy_controller dead_enemy;
 
 	void Start(){
 		if(null == player_controller){
@@ -52,6 +51,15 @@ public class t_player_controller : t_character_controller {
 				Load_Armor (11);
 			}
 		}
+
+		if(true == t_player_states.Is_Free_Moving () || true == t_player_states.Is_Interacting_With_Corpse () ){
+			if(Input.GetKeyDown (KeyCode.E)){
+				if(null != dead_enemy){
+					dead_enemy.Loot ();
+				}
+			}
+		}
+		
 	}
 
 	public void Initialise(int _weapon_id, int _armor_id){
@@ -106,15 +114,6 @@ public class t_player_controller : t_character_controller {
 			Destroy (armors[i].gameObject);
 		}
 	}
-		
-	public int Get_Weapon_ID(){
-		return weapon_id;
-	}
-
-	public int Get_Armor_ID(){
-		return armor_id;
-	}
-
 	public void Update_All_UI_Elements(){
 		Update_UI_Health ();
 		Update_UI_Gold ();
@@ -191,4 +190,16 @@ public class t_player_controller : t_character_controller {
 		//run player death animation
 		Destroy (this.gameObject);
 	}	
+
+	void OnTriggerEnter2D(Collider2D _col){
+		if(null != _col.gameObject.GetComponent <t_enemy_controller>()){
+			dead_enemy = _col.gameObject.GetComponent <t_enemy_controller> ();
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D _col){
+		if(null != _col.gameObject.GetComponent <t_enemy_controller>()){
+			dead_enemy = null;
+		}
+	}
 }
