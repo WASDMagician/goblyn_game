@@ -1,32 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class t_pickup : MonoBehaviour {
+public class t_pickup : MonoBehaviour {
 	[SerializeField]
 	protected bool requires_key_input = false;
 	protected bool key_input_given = false;
 	protected bool collided_with_player = false;
 
-	public void Set_Collided_With_Player(bool _collided){
-		collided_with_player = _collided;
-	}
-
 	void Update(){
-		if((false == requires_key_input && true == collided_with_player) || true == key_input_given){
+		if(true == collided_with_player){
 			Pickup_Item ();
 		}
-		else{
-			Handle_User_Input ();
+	}
+
+	public virtual void Pickup_Item (){}
+
+	void OnTriggerEnter2D(Collider2D _col){
+		if(_col.gameObject == t_player_controller.player_controller.gameObject){
+			collided_with_player = true;
 		}
 	}
 
-	void Handle_User_Input(){
-		if(Input.GetKeyDown (KeyCode.E)){
-			key_input_given = true;
+	void OnTriggerExit2D(Collider2D _col){
+		if(_col.gameObject == t_player_controller.player_controller.gameObject){
+			collided_with_player = false;
 		}
 	}
-
-	public abstract void Pickup_Item ();
 
 
 }

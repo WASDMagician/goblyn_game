@@ -13,5 +13,12 @@ public static class item_codes : object {
 		{13, "Items/Armor/knight_armor"}
 	};
 
-	
+	public static Dictionary<int, string> game_item_names = new Dictionary<int, string> () {
+		{ 1, "Bone Dagger" },
+		{ 2, "Sword" },
+		{ 3, "Bow" },
+		{ 11, "Goblin Armor" },
+		{ 12, "Peasant Armor" },
+		{ 13, "Knight Armor" }
+	};
 }

@@ -6,17 +6,16 @@ public class t_player_controller : t_character_controller {
 	public static t_player_controller player_controller;
 
 	//weapon values and components
-	[SerializeField]
-	private int weapon_id;
 	private GameObject weapon_position;
 	public GameObject player_weapon_object;
 	public t_weapon player_weapon_script;
 
-	//armor values and components
 	[SerializeField]
-	private int armor_id = 11;
 	public GameObject player_armor_object;
 	public t_armor player_armor_script;
+
+
+	protected t_enemy_controller dead_enemy;
 
 	void Start(){
 		if(null == player_controller){
@@ -35,20 +34,32 @@ public class t_player_controller : t_character_controller {
 	}
 
 	void Handle_User_Input(){
+
 		//not liking this use of player states but can't think of another way to do it
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape) && (t_player_states.Is_Free_Moving () || t_player_states.Is_In_Menu ())) {
 			t_pause_menu_controller.pause_controller.Toggle_Pause ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.A)) {
-			if (null != player_weapon_script) {
-				player_weapon_script.Attack ();
+		if (t_player_states.Is_Free_Moving ()) {
+			if (Input.GetKeyDown (KeyCode.A)) {
+				if (null != player_weapon_script) {
+					player_weapon_script.Attack ();
+				}
+			}
+
+			if (Input.GetKeyDown (KeyCode.D)) {
+				Load_Armor (11);
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.D)) {
-			Load_Armor (11);
+		if(true == t_player_states.Is_Free_Moving () || true == t_player_states.Is_Interacting_With_Corpse () ){
+			if(Input.GetKeyDown (KeyCode.E)){
+				if(null != dead_enemy){
+					dead_enemy.Loot ();
+				}
+			}
 		}
+		
 	}
 
 	public void Initialise(int _weapon_id, int _armor_id){
@@ -103,15 +114,6 @@ public class t_player_controller : t_character_controller {
 			Destroy (armors[i].gameObject);
 		}
 	}
-		
-	public int Get_Weapon_ID(){
-		return weapon_id;
-	}
-
-	public int Get_Armor_ID(){
-		return armor_id;
-	}
-
 	public void Update_All_UI_Elements(){
 		Update_UI_Health ();
 		Update_UI_Gold ();
@@ -187,18 +189,17 @@ public class t_player_controller : t_character_controller {
 	{
 		//run player death animation
 		Destroy (this.gameObject);
-	}
+	}	
 
 	void OnTriggerEnter2D(Collider2D _col){
-		if(_col.GetComponent<t_pickup>() != null){
-			_col.GetComponent <t_pickup> ().Set_Collided_With_Player (true);
+		if(null != _col.gameObject.GetComponent <t_enemy_controller>()){
+			dead_enemy = _col.gameObject.GetComponent <t_enemy_controller> ();
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D _col){
-		if(_col.GetComponent <t_pickup>() != null){
-			_col.GetComponent <t_pickup>().Set_Collided_With_Player (false);
+		if(null != _col.gameObject.GetComponent <t_enemy_controller>()){
+			dead_enemy = null;
 		}
 	}
-	
 }
