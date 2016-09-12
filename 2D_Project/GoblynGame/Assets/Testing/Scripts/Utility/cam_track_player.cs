@@ -10,7 +10,9 @@ public class cam_track_player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//player_object = GameObject.FindGameObjectWithTag ("Player");
-		player_object = t_player_controller.player_controller.gameObject;
+		if (r_player_controller.character_controller != null) {
+			player_object = r_player_controller.character_controller.gameObject;
+		}
 	}
 	
 	// Update is called once per frame

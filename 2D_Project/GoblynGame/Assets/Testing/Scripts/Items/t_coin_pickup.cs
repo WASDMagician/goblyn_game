@@ -10,7 +10,7 @@ public class t_coin_pickup: t_pickup {
 	public override void Pickup_Item ()
 	{
 		if ((false == requires_key_input) || (true == requires_key_input && true == key_input_given)) {
-			t_player_controller.player_controller.Set_Gold (t_player_controller.player_controller.Get_Gold () + coin_value);
+			r_player_controller.character_controller.Add_Gold (coin_value);
 			Destroy_Pickup ();
 		}
 	}

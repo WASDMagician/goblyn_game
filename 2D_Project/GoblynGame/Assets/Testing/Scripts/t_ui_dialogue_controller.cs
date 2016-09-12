@@ -39,7 +39,7 @@ public class t_ui_dialogue_controller : MonoBehaviour {
 	public void Disable_Dialogue(){
 		current_page = 0;
 		Erase_Buttons ();
-		t_player_states.Set_Free_Moving ();
+		r_player_controller.character_controller.Switch_States (r_player_controller.states.idle);
 		this.transform.GetChild (0).gameObject.SetActive (false);
 	}
 	
@@ -100,13 +100,13 @@ public class t_ui_dialogue_controller : MonoBehaviour {
 		int action_value = dialogue.pages [current_page].option_buttons [_button_number].action_value;
 		dialogue_box.dialogue_page.dialogue_options.actions action = dialogue.pages [current_page].option_buttons [_button_number].action;
 		if(action == dialogue_box.dialogue_page.dialogue_options.actions.modify_gold){
-			t_player_controller.player_controller.Set_Gold (t_player_controller.player_controller.Get_Gold () + action_value);
+			r_player_controller.character_controller.Add_Gold (action_value);
 		}
 		else if(action == dialogue_box.dialogue_page.dialogue_options.actions.modify_health){
-			t_player_controller.player_controller.Set_Health (t_player_controller.player_controller.Get_Health () + action_value);
+			r_player_controller.character_controller.Add_Health (action_value);
 		}
 		else if(action == dialogue_box.dialogue_page.dialogue_options.actions.modify_teeth){
-			t_player_controller.player_controller.Set_Teeth (t_player_controller.player_controller.Get_Teeth () + action_value);
+			r_player_controller.character_controller.Add_Teeth (action_value);
 		}
 		else if(action == dialogue_box.dialogue_page.dialogue_options.actions.give_item){
 			

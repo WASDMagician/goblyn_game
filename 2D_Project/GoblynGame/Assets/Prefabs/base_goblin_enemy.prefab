@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11471018}
   - 114: {fileID: 11431286}
   - 114: {fileID: 11482098}
+  - 114: {fileID: 11407210}
   m_Layer: 0
   m_Name: base_goblin_enemy
   m_TagString: Untagged
@@ -217,6 +218,19 @@ BoxCollider2D:
   m_Offset: {x: -0.043107748, y: 1.2975888}
   serializedVersion: 2
   m_Size: {x: 0.83591086, y: 2.6099997}
+--- !u!114 &11407210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d32f6d17bc0a74c8229aef34d870fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactible_type: 0
+  enemy_controller: {fileID: 0}
 --- !u!114 &11431286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,7 +248,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   enemy_chase_distance: 5
-  patrol_distance_from_start: 0
+  patrol_distance_from_start: 5
 --- !u!114 &11448100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,7 +295,7 @@ MonoBehaviour:
   character_health: 100
   character_gold: 50
   character_teeth: 32
-  weapon_id: 0
+  weapon_id: 1
   armor_id: 11
   enemy_attack_range: 0
 --- !u!114 &11482098
@@ -295,6 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b546a1ea368fb4eb0d331b0ded916d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  name_text: {fileID: 0}
   enemy_health_prefab: {fileID: 190566, guid: 15e3a7abeb7ca274e8a3545ab00743ae, type: 2}
   enemy_health_object: {fileID: 0}
   background_image: {fileID: 0}

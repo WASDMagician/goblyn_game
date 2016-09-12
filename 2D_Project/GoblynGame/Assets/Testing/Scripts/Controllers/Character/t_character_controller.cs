@@ -4,36 +4,43 @@ using System.Collections;
 public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int> {
 
 	[SerializeField]
-	protected int character_max_health;
+	protected int max_health;
 	[SerializeField]
-	protected int character_health;
+	protected int health;
 	[SerializeField]
-	protected int character_gold;
+	protected int gold;
 	[SerializeField]
-	protected int character_teeth;
+	protected int teeth;
 
 	[SerializeField]
 	protected int weapon_id;
 
 	//armor values and components
 	[SerializeField]
-	protected int armor_id = 11;
+	protected int armor_id;
 
 	protected bool is_invulnerable;
 
 	protected bool is_alive = true;
 
-	public void Set_Max_Health(int _max_health){
-		character_max_health = _max_health;
+	public virtual void Set_Max_Health(int _max_health){
+		max_health = _max_health;
 	}
 
 	public int Get_Max_Health(){
-		return character_max_health;
+		return max_health;
 	}
 
 	public virtual void Set_Health(int _health){
 		if (false == is_invulnerable) {
-			character_health = _health;
+			health = _health;
+			Health_Check ();
+		}
+	}
+
+	public virtual void Add_Health(int _health){
+		if(false == is_invulnerable){
+			health += _health;
 			Health_Check ();
 		}
 	}
@@ -45,23 +52,31 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	}
 
 	public int Get_Health(){
-		return character_health;
+		return health;
 	}
 
 	public virtual void Set_Gold(int _gold){
-		character_gold = _gold;
+		gold = _gold;
+	}
+
+	public virtual void Add_Gold(int _gold){
+		gold += _gold;
 	}
 
 	public int Get_Gold(){
-		return character_gold;
+		return gold;
 	}
 
 	public virtual void Set_Teeth(int _teeth){
-		character_teeth = _teeth;
+		teeth = _teeth;
+	}
+
+	public virtual void Add_Teeth(int _teeth){
+		teeth += _teeth;
 	}
 
 	public int Get_Teeth(){
-		return character_teeth;
+		return teeth;
 	}
 
 	public int Get_Weapon_ID(){
@@ -71,7 +86,7 @@ public class t_character_controller : MonoBehaviour, IKillable, IDamageable<int>
 	public int Get_Armor_ID(){
 		return armor_id;
 	}
-		
+
 	public virtual void Kill(){
 		Destroy (this.gameObject);
 	}

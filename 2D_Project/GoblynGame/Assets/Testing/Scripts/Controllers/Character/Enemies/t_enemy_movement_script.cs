@@ -35,8 +35,8 @@ public class t_enemy_movement_script : t_character_movement {
 	}
 
 	void Movement_Decider(){
-		if(null != t_player_controller.player_controller){
-			float player_distance = Vector3.Distance (this.transform.position, t_player_controller.player_controller.transform.position);
+		if(null != r_player_controller.character_controller){
+			float player_distance = Vector3.Distance (this.transform.position, r_player_controller.character_controller.transform.position);
 			if(player_distance < enemy_chase_distance){
 				Chase_Player ();
 			}
@@ -79,7 +79,7 @@ public class t_enemy_movement_script : t_character_movement {
 
 
 	int Get_Player_Direction(){
-		if(t_player_controller.player_controller.transform.position.x < this.transform.position.x){
+		if(r_player_controller.character_controller.transform.position.x < this.transform.position.x){
 			return -1;
 		}
 		else{
@@ -88,6 +88,6 @@ public class t_enemy_movement_script : t_character_movement {
 	}
 
 	bool Can_See_Player(){
-		return !Physics2D.Linecast ((Vector2)this.transform.position, (Vector2)t_player_controller.player_controller.transform.position);
+		return !Physics2D.Linecast ((Vector2)this.transform.position, (Vector2)r_player_controller.character_controller.transform.position);
 	}
 }

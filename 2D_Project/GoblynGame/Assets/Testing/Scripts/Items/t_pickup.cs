@@ -16,13 +16,13 @@ public class t_pickup : MonoBehaviour {
 	public virtual void Pickup_Item (){}
 
 	void OnTriggerEnter2D(Collider2D _col){
-		if(_col.gameObject == t_player_controller.player_controller.gameObject){
+		if(_col.gameObject == r_player_controller.character_controller.gameObject){
 			collided_with_player = true;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D _col){
-		if(_col.gameObject == t_player_controller.player_controller.gameObject){
+		if(_col.gameObject == r_player_controller.character_controller.gameObject){
 			collided_with_player = false;
 		}
 	}

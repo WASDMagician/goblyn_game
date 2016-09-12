@@ -22,14 +22,13 @@ public class t_ui_player_updater : MonoBehaviour {
 		else if(this != player_updater){
 			Destroy (gameObject);
 		}
-
-		StartCoroutine (Periodic_Update ());
 	}
 
-	IEnumerator Periodic_Update(){
-		t_player_controller.player_controller.Update_All_UI_Elements ();
-		yield return new WaitForSeconds (5);
-		StartCoroutine (Periodic_Update ());
+	public void Update_UI(float _max_health, float _current_health, int _shield, int _gold, int _teeth){
+		Set_UI_Health (_max_health, _current_health);
+		Set_UI_Shield (_shield);
+		Set_UI_Gold (_gold);
+		Set_UI_Teeth (_teeth);
 	}
 
 	public void Set_UI_Health(float _max_health, float _current_health){

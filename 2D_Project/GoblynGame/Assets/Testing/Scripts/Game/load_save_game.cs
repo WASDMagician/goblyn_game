@@ -6,19 +6,31 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 public class load_save_game : MonoBehaviour {
-	
+
+	public static load_save_game load_save_controller;
+
+	void Start(){
+		DontDestroyOnLoad (this.gameObject);
+		if(null == load_save_controller){
+			load_save_controller = this;
+		}
+		else if(this != load_save_controller){
+			Destroy (this.gameObject);
+		}
+	}
+
 	public void Save(){
 		BinaryFormatter binary_formatter = new BinaryFormatter ();
 		FileStream file = File.Create (Application.persistentDataPath + "/save_game.data");
 		Save_Data data = new Save_Data ();
-		data.Save_Position (t_player_controller.player_controller.transform.position);
+		data.Save_Position (r_player_controller.character_controller.transform.position);
 		data.Save_Level (SceneManager.GetActiveScene ().buildIndex);
-		data.Save_Weapon_ID (t_player_controller.player_controller.Get_Weapon_ID ());
-		data.Save_Armor_ID (t_player_controller.player_controller.Get_Armor_ID());
-		data.Save_Gold (t_player_controller.player_controller.Get_Gold ());
-		data.Save_Teeth (t_player_controller.player_controller.Get_Teeth ());
-		data.Save_Max_Health (t_player_controller.player_controller.Get_Max_Health ());
-		data.Save_Health (t_player_controller.player_controller.Get_Health ());
+		data.Save_Weapon_ID (r_player_controller.character_controller.Get_Weapon_ID ());
+		data.Save_Armor_ID (r_player_controller.character_controller.Get_Armor_ID());
+		data.Save_Gold (r_player_controller.character_controller.Get_Gold ());
+		data.Save_Teeth (r_player_controller.character_controller.Get_Teeth ());
+		data.Save_Max_Health (r_player_controller.character_controller.Get_Max_Health ());
+		data.Save_Health (r_player_controller.character_controller.Get_Health ());
 		binary_formatter.Serialize (file, data);
 
 		file.Close ();
@@ -30,23 +42,33 @@ public class load_save_game : MonoBehaviour {
 			BinaryFormatter binary_formatter = new BinaryFormatter ();
 			FileStream file = File.Open (Application.persistentDataPath + "/save_game.data", FileMode.Open);
 			Save_Data data = (Save_Data)binary_formatter.Deserialize (file);
-			SceneManager.LoadScene (data.Load_Level_Index ());
-			t_player_controller.player_controller.gameObject.transform.position = data.Load_Position ();
-			t_player_controller.player_controller.Load_Weapon (data.Load_Weapon_ID ());
-			t_player_controller.player_controller.Load_Armor (data.Load_Armor_ID ());
-			t_player_controller.player_controller.Set_Gold (data.Load_Gold ());
-			t_player_controller.player_controller.Set_Teeth (data.Load_Teeth ());
-			t_player_controller.player_controller.Set_Max_Health (data.Load_Max_Health ());
-			t_player_controller.player_controller.Set_Health (data.Load_Health ());
-			t_player_controller.player_controller.Initialise (data.Load_Weapon_ID (), data.Load_Armor_ID ());
-
+			StartCoroutine (Load_Level (data));
 			Time.timeScale = 1;
 			file.Close ();
 		}
 	}
 
-	void Load_Game(){
-		
+	IEnumerator Load_Level(Save_Data _data){
+		AsyncOperation scene_loading = SceneManager.LoadSceneAsync (_data.Load_Level_Index ());
+		while(false == scene_loading.isDone){
+			yield return new WaitForSeconds (0);
+		}
+		StartCoroutine (On_Scene_Load (_data));
+	}
+
+	IEnumerator On_Scene_Load(Save_Data data){
+		while(null == r_player_controller.character_controller){
+			yield return new WaitForSeconds (0);
+		}
+		r_player_controller.character_controller.gameObject.transform.position = data.Load_Position ();
+		r_player_controller.character_controller.Set_Weapon (data.Load_Weapon_ID ());
+		r_player_controller.character_controller.Set_Armor (data.Load_Armor_ID ());
+		r_player_controller.character_controller.Set_Gold (data.Load_Gold ());
+		r_player_controller.character_controller.Set_Teeth (data.Load_Teeth ());
+		r_player_controller.character_controller.Set_Max_Health (data.Load_Max_Health ());
+		r_player_controller.character_controller.Set_Health (data.Load_Health ());
+		r_player_controller.character_controller.Switch_States (r_player_controller.states.idle);
+		r_player_controller.character_controller.Update_UI ();
 	}
 }
 
