@@ -4,7 +4,7 @@ using System.Collections;
 public class t_character_movement : MonoBehaviour {
 
 	//components
-	protected Rigidbody2D character_rigidbody;
+	public Rigidbody2D character_rigidbody;
 	private SpriteRenderer character_sprite;
 
 	//setable player values
@@ -61,7 +61,7 @@ public class t_character_movement : MonoBehaviour {
 	/// Makes use of private function to do actual casting.
 	/// </summary>
 	/// <returns><c>true</c>, if is grounded was playered, <c>false</c> otherwise.</returns>
-	protected bool Player_Is_Grounded(){
+	public bool Player_Is_Grounded(){
 		if (Cast_Down (Vector2.zero)){
 			return true;
 		}

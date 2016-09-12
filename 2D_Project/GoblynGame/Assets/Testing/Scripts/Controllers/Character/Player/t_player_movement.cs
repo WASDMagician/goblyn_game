@@ -7,36 +7,32 @@ public class t_player_movement : t_character_movement {
 	void Start () {
 		Initialise ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		Handle_User_Input ();
+
+	public void Move_Left(){
+		character_direction = -1;
+		character_last_direction = -1;
+		Sprite_Direction_Check ();
 		Move ();
 	}
 
-	public void Handle_User_Input ()
-	{
-		if (t_player_states.Is_Free_Moving ()) {
-			if (Input.GetKey (KeyCode.LeftArrow)) {
-				character_direction = -1;
-				character_last_direction = -1;
-				Sprite_Direction_Check ();
-			} else if (Input.GetKey (KeyCode.RightArrow)) {
-				character_direction = 1;
-				character_last_direction = 1;
-				Sprite_Direction_Check ();
-			} else {
-				character_direction = 0;
-			}
+	public void Move_Right(){
+		character_direction = 1;
+		character_last_direction = 1;
+		Sprite_Direction_Check ();
+		Move ();
+	}
 
-			if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)) {
-				if (Player_Is_Grounded ()) {
-					Jump ();
-				}
-			}
-		}
-		else{
-			character_direction = 0;
+	public void Stop(){
+		Vector2 current_velocity = character_rigidbody.velocity;
+		current_velocity.x = 0;
+		//character_rigidbody.velocity = Vector2.zero;
+		character_rigidbody.velocity = current_velocity;
+		character_direction = 0;
+	}
+
+	public void Player_Jump(){
+		if(Player_Is_Grounded ()){
+			Jump ();
 		}
 	}
 }

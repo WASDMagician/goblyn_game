@@ -38,14 +38,15 @@ public class t_enemy_controller : t_character_controller{
 		health_bar.Update_Health_Bar (); //updates health bar *position* rename it.
 		if (true == is_alive) {
 			if (true == Player_In_Attack_Distance ()) { //refactor to not happen each frame?
+				print ("ATTACK");
 				enemy_weapon_script.Attack ();
 			}
 		}
 	}
 
 	bool Player_In_Attack_Distance(){
-		if (t_player_controller.player_controller != null) {
-			if (Vector3.Distance (enemy_weapon_object.transform.position, t_player_controller.player_controller.transform.position) <
+		if (r_player_controller.character_controller != null) {
+			if (Vector3.Distance (enemy_weapon_object.transform.position, r_player_controller.character_controller.transform.position) <
 			  enemy_weapon_script.Get_Weapon_Range ()) {
 				return true;
 			}
@@ -78,7 +79,7 @@ public class t_enemy_controller : t_character_controller{
 
 	public void Loot(){
 		if(false == gold_looted){
-			t_player_controller.player_controller.Set_Gold (t_player_controller.player_controller.Get_Gold () + Get_Gold ());
+			r_player_controller.character_controller.Add_Gold (Get_Gold ());
 			string message = "Looted " + Get_Gold ().ToString () + " gold.\nNext item: " + Get_Teeth ().ToString () + " teeth.";
 			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
 			t_ui_warning_box.warning_box.Set_Warning_Message (message);
@@ -86,21 +87,21 @@ public class t_enemy_controller : t_character_controller{
 
 		}
 		else if(false == teeth_looted){
-			t_player_controller.player_controller.Set_Teeth (t_player_controller.player_controller.Get_Teeth () + Get_Teeth ());
+			r_player_controller.character_controller.Add_Teeth (Get_Teeth ());
 			string message = "Looted " + Get_Teeth ().ToString () + " teeth.\nNext item: " + item_codes.game_item_names[weapon_id];
 			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
 			t_ui_warning_box.warning_box.Set_Warning_Message (message);
 			teeth_looted = true;
 		}
 		else if(false == weapon_looted){
-			t_player_controller.player_controller.Load_Weapon (weapon_id);
+			r_player_controller.character_controller.Set_Weapon (weapon_id);
 			string message = "Looted: " + item_codes.game_item_names [weapon_id] + ".\nNext item: " + item_codes.game_item_names [armor_id];
 			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
 			t_ui_warning_box.warning_box.Set_Warning_Message (message);
 			weapon_looted = true;
 		}
 		else if(false == armor_looted){
-			t_player_controller.player_controller.Load_Armor (armor_id);
+			r_player_controller.character_controller.Set_Armor (armor_id);
 			string message = "Looted: " + item_codes.game_item_names [armor_id] + ".\nNo more items to loot.";
 			t_ui_warning_box.warning_box.Enable_Warning_Text_Object ();
 			t_ui_warning_box.warning_box.Set_Warning_Message ("Looted armor");

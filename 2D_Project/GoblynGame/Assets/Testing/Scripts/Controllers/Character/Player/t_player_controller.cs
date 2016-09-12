@@ -37,7 +37,6 @@ public class t_player_controller : t_character_controller {
 
 		//not liking this use of player states but can't think of another way to do it
 		if (Input.GetKeyDown (KeyCode.Escape) && (t_player_states.Is_Free_Moving () || t_player_states.Is_In_Menu ())) {
-			t_pause_menu_controller.pause_controller.Toggle_Pause ();
 		}
 
 		if (t_player_states.Is_Free_Moving ()) {
@@ -73,13 +72,14 @@ public class t_player_controller : t_character_controller {
 		while (t_ui_player_updater.player_updater == null){
 			yield return new WaitForSeconds (0.25f);
 		}
-		Update_All_UI_Elements ();
+		Update_UI ();
 	}
 
 	public void Load_Weapon(int _weapon_id){
 		//remove old weapon
 		Remove_Weapon ();
 
+		weapon_id = _weapon_id;
 		//create new weapon
 		player_weapon_object = Instantiate((GameObject)Resources.Load (item_codes.game_items [_weapon_id]));
 		player_weapon_object.transform.parent = weapon_position.transform;
@@ -99,13 +99,14 @@ public class t_player_controller : t_character_controller {
 		//remove old armor
 		Remove_Armor ();
 
+		armor_id = _armor_id;
 		//create new armor
 		player_armor_object = Instantiate ((GameObject)Resources.Load (item_codes.game_items [_armor_id]));
 		player_armor_object.transform.parent = this.transform;
 		player_armor_object.transform.localScale = this.transform.InverseTransformPoint (this.transform.position);
 		player_armor_script = player_armor_object.GetComponent <t_armor> ();
 
-		Update_UI_Defense ();
+		Update_UI ();
 	}
 
 	public void Remove_Armor(){
@@ -114,75 +115,12 @@ public class t_player_controller : t_character_controller {
 			Destroy (armors[i].gameObject);
 		}
 	}
-	public void Update_All_UI_Elements(){
-		Update_UI_Health ();
-		Update_UI_Gold ();
-		Update_UI_Teeth ();
-		Update_UI_Defense ();
-	}
 
-	void Update_UI_Health(){
-		try{
-			t_ui_player_updater.player_updater.Set_UI_Health (Get_Max_Health (), Get_Health ());
-		}
-		catch(System.Exception e){
-			Debug.Log (e.ToString ());
-		}
-
-		Update_UI_Defense ();
-	}
-
-	void Update_UI_Defense(){
-		try{
-			t_ui_player_updater.player_updater.Set_UI_Shield (player_armor_script.Get_Armor_Defense_Amount ());
-		}
-		catch(System.Exception e){
-			Debug.Log (e.ToString ());
-		}
-	}
-
-	void Update_UI_Gold(){
-		try{
-			t_ui_player_updater.player_updater.Set_UI_Gold(Get_Gold ());
-		}
-		catch(System.Exception e){
-			Debug.Log (e.ToString ());
-		}
-	}
-
-	void Update_UI_Teeth(){
-		try{
-			t_ui_player_updater.player_updater.Set_UI_Teeth (Get_Teeth ());
-		}
-		catch(System.Exception e){
-			Debug.Log (e.ToString ());
-		}
-	}
-	
-
-	//override character_controller functions
-	public override void Set_Gold (int _gold)
-	{
-		base.Set_Gold (_gold);
-		Update_UI_Gold ();
-	}
-
-	public override void Set_Health (int _health)
-	{
-		base.Set_Health (_health);
-		Update_UI_Health ();
-	}
-
-	public override void Set_Teeth (int _teeth)
-	{
-		base.Set_Teeth (_teeth);
-		Update_UI_Teeth ();
-	}
-
-	public override void Damage (int _damage_amount)
-	{
-		base.Damage (_damage_amount);
-		Update_UI_Health (); //may be unnecesarry with call to set_health
+	void Update_UI(){
+		t_ui_player_updater.player_updater.Set_UI_Health (Get_Max_Health (), Get_Health ());
+		t_ui_player_updater.player_updater.Set_UI_Teeth (Get_Teeth ());
+		t_ui_player_updater.player_updater.Set_UI_Gold(Get_Gold ());
+		t_ui_player_updater.player_updater.Set_UI_Shield (player_armor_script.Get_Armor_Defense_Amount ());
 	}
 
 	public override void Kill ()

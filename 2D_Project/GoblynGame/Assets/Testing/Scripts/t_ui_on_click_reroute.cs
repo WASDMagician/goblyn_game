@@ -26,7 +26,7 @@ public class t_ui_on_click_reroute : MonoBehaviour {
 			if(null == button){
 				Get_Button ();
 			}
-			else{
+			else if(null != button){
 				if(EventSystem.current.currentSelectedGameObject.GetComponent <Button>() == button){
 					PointerEventData pointer = new PointerEventData (EventSystem.current);
 					ExecuteEvents.Execute (button.gameObject, pointer, ExecuteEvents.submitHandler);

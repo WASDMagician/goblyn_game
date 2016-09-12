@@ -7,7 +7,6 @@ public class t_canvas_controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (this.gameObject);
 
 		if(null == canvas_controller){
 			canvas_controller = this;

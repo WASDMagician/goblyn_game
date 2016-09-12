@@ -36,9 +36,9 @@ public class t_ui_warning_box : MonoBehaviour {
 	}
 
 	void Handle_User_Input(){
-		if(Input.GetKeyDown (KeyCode.E)){
+		/*if(Input.GetKeyDown (KeyCode.E)){
 			Disable_Warning_Text_Object ();
-		}
+		}*/
 	}
 
 	private void Get_Text_Object(){
@@ -68,7 +68,7 @@ public class t_ui_warning_box : MonoBehaviour {
 	}
 
 	IEnumerator Warning_Box_Timer(){
-		yield return new WaitForSeconds (warning_appearance_length);
+		yield return new WaitForSeconds (6);
 		Disable_Warning_Text_Object ();
 	}
 }

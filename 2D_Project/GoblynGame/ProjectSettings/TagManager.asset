@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Jumpable
-  - 
+  - Climbable
   - 
   - 
   - 
@@ -40,6 +40,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4151766095
+    locked: 0
+  - name: Midground
+    uniqueID: 3762871363
+    locked: 0
+  - name: Foreground
+    uniqueID: 477509757
     locked: 0
   - name: player_layer
     uniqueID: 2534793259

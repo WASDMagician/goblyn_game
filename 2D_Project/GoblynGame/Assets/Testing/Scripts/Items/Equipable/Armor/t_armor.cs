@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class t_armor : MonoBehaviour, IDamageable<int> {
+public class t_armor : MonoBehaviour{
 
 	[SerializeField]
 	protected int armor_defense_amount;
@@ -33,17 +33,7 @@ public class t_armor : MonoBehaviour, IDamageable<int> {
 			Disable ();
 		}
 	}
-
-	/// <summary>
-	/// How much other goblins will be alarmed by player appearance.
-	/// 0 means you are dressed as a goblin and they will accept you.
-	/// Each increment above that increases goblin hostility while
-	/// decreasing the hostility of NPC's and enemies who will mistake
-	/// you for their own, their hostility is set on a per NPC-type
-	/// basis.
-	/// 0 is
-	/// </summary>
-	/// <returns>The gobline visibility.</returns>
+		
 	public int Get_Goblin_Alarm_Rating(){
 		return goblin_alarm_rating;
 	}
